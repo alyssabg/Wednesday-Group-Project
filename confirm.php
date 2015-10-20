@@ -2,6 +2,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Wednesday Confirm - Alyssa Gagnon</title>
 
 <style>
@@ -21,7 +24,10 @@
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
-           <!-- <div class="navbar-header">-->
+           <div class="navbar-header">
+           	<div class="mobilelogo">
+            		<a href="home.php"><img src="img/wednesday_logo1.png" alt=""></a>
+            	</div>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -29,10 +35,12 @@
                     <span class="icon-bar"></span>
                 </button>
                 
-               <!-- <a class="navbar-brand" href="#">Start Bootstrap</a>
-            </div>-->
+               <!-- <a class="navbar-brand" href="#">Start Bootstrap</a>-->
+            </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="col-lg-4"><img src="img/wednesday_logo1.png" alt=""></div>
+            <div class="logo">
+            <div class="col-lg-4"><a href="home.php"><img src="img/wednesday_logo1.png" alt="Wednesday"></a></div>
+            </div>
             <div class="col-lg-8">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             
@@ -46,6 +54,9 @@
                     </li>
                     <li>
                         <a href="catalog.php">Men</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
                     </li>
                     <li>
                         <a href="client.php">Sign In</a>
@@ -164,9 +175,7 @@
                 <div class="col-lg-6">
                     <p>This site is not official and is an assignment for a UCF Digital Media course</p>
                     <p>designed by Alyssa Gagnon</p>
-                    <button type="button" class="btn btn-success pull-left">
-                            <a href="admin.php" style="color:white;">Admin </a><span class="glyphicon glyphicon-user"></span>
-                        </button>
+                   
                 </div>
                 <div class="col-lg-3">
                 	<p><strong>Contact</strong></p>

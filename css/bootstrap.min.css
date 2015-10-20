@@ -3570,6 +3570,7 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 }
 }
 .navbar-collapse {
+	text-align:center;
 	padding-right: 15px;
 	padding-left: 15px;
 	overflow-x: visible;
@@ -3604,7 +3605,7 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 }
 }
 .navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {
-	max-height: 340px
+	max-height: 540px
 }
 
 @media (max-device-width:480px) and (orientation:landscape) {
@@ -3680,7 +3681,8 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 	margin-top: 8px;
 	margin-right: 15px;
 	margin-bottom: 8px;
-	background-color: transparent;
+	/*background-color: transparent;*/
+	background-color: #5b5a5a;
 	background-image: none;
 	border: 1px solid transparent;
 	border-radius: 4px
@@ -3986,13 +3988,13 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 	border-color: #333
 }
 .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
-	background-color: #333
+	background-color: #5b5a5a
 }
 .navbar-inverse .navbar-toggle .icon-bar {
 	background-color: #fff
 }
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
-	border-color: #101010
+	border-color: #5b5a5a
 }
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
 	color: #fff;

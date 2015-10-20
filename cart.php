@@ -2,6 +2,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Wednesday Cart - Alyssa Gagnon</title>
 
 <style>
@@ -21,7 +24,10 @@
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
-           <!-- <div class="navbar-header">-->
+           <div class="navbar-header">
+           		<div class="mobilelogo">
+            		<a href="home.php"><img src="img/wednesday_logo1.png" alt=""></a>
+            	</div>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -29,10 +35,12 @@
                     <span class="icon-bar"></span>
                 </button>
                 
-               <!-- <a class="navbar-brand" href="#">Start Bootstrap</a>
-            </div>-->
+               <!-- <a class="navbar-brand" href="#">Start Bootstrap</a>-->
+            </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="col-lg-4"><img src="img/wednesday_logo1.png"></div>
+            <div class="logo">
+            <div class="col-lg-4"><a href="home.php"><img src="img/wednesday_logo1.png" alt="Wednesday"></a></div>
+            </div>
             <div class="col-lg-8">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             
@@ -46,6 +54,9 @@
                     </li>
                     <li>
                         <a href="catalog.php">Men</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
                     </li>
                     <li>
                         <a href="client.php">Sign In</a>
@@ -86,6 +97,7 @@
                     <h1 style="text-align:center;">Review Your Order</h1>
                     </div>
                 </div>
+                <div class="carttitles">
                 <div class="row">
                     <div class="col-sm-12 col-md-12">
                         <h4 class="col-sm-1 col-lg-3 col-md-12" style="text-align:center;">Product</h4>
@@ -94,19 +106,36 @@
                         <h4 class="col-sm-1 col-lg-3 col-md-12" style="text-align:center;">Total</h4>
                    </div>
                 </div>
+                </div>
                 <hr>
             
                         <div class="col-sm-1 col-lg-3 col-md-12">
                         	<div class="media">
+                            <div class="cartmobile">
+                            <h4 style="text-align:center;">Product</h4>
+                            <br>
+                            </div>
                             <h4 class="media-heading"><a href="#">Product name</a></h4>
                             <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
                           
                         	</div>
                         </div>
+                        <div class="cartmobile">
+                            <h4 style="text-align:center;">Price</h4>
+                            <br>
+                         </div>
                         <div class="col-sm-1 col-lg-3 col-md-12 text-center"><strong>$4.87</strong></div>
+                        <div class="cartmobile">
+                            <h4 style="text-align:center;">Quantity</h4>
+                            <br>
+                         </div>
                         <div class="col-sm-1 col-lg-3 col-md-12" style="text-align: center">
                         <input type="text" size="2" value="3">
                         </div>
+                         <div class="cartmobile">
+                            <h4 style="text-align:center;">Total</h4>
+                            <br>
+                         </div>
                         <div class="col-sm-1 col-lg-3 col-md-12 text-center"><strong>$14.61</strong></div>
                       
                         <br>
@@ -175,12 +204,12 @@
                     <h3 class="panel-title">
                         Shipping Information
                     </h3>
-                    <div class="checkbox pull-right">
+                  <!--  <div class="checkbox pull-right">
                         <label>
                             <input type="checkbox" />
                             Use For Billing
                         </label>
-                    </div>
+                    </div>-->
                 </div>
                
                 <div class="panel-body1">
@@ -255,12 +284,12 @@
                     <h3 class="panel-title">
                         Payment Details
                     </h3>
-                    <div class="checkbox pull-right">
+                <!--    <div class="checkbox pull-right">
                         <label>
                             <input type="checkbox" />
                             Remember
                         </label>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="panel-body1">
                     <form role="form">
@@ -319,9 +348,7 @@
                 <div class="col-lg-6">
                     <p>This site is not official and is an assignment for a UCF Digital Media course</p>
                     <p>designed by Alyssa Gagnon</p>
-                    <button type="button" class="btn btn-success pull-left">
-                            <a href="admin.php" style="color:white;">Admin </a><span class="glyphicon glyphicon-user"></span>
-                        </button>
+                    
                 </div>
                 <div class="col-lg-3">
                 	<p><strong>Contact</strong></p>

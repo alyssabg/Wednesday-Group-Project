@@ -32,7 +32,7 @@
                <!-- <a class="navbar-brand" href="#">Start Bootstrap</a>
             </div>-->
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="col-lg-4"><img src="img/wednesday_logo1.png"></div>
+            <div class="col-lg-4"><a href="home.php"><img src="img/wednesday_logo1.png" alt="Wednesday"></a></div>
             <div class="col-lg-8">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             

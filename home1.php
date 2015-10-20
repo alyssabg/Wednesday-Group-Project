@@ -14,8 +14,6 @@ $myData = mysql_query($sql,$con);
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
@@ -33,13 +31,13 @@ $myData = mysql_query($sql,$con);
 </head>
 
 <body>
- <!-- Navigation -->
+<!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
-          <div class="mobilelogo">
-            <a href="home.php"><img src="img/wednesday_logo1.png" alt=""></a>
+          	<div class="mobilelogo">
+            	<a href="home.php"><img src="img/wednesday_logo1.png" alt=""></a>
             </div>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -47,13 +45,12 @@ $myData = mysql_query($sql,$con);
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-              
+                
                <!-- <a class="navbar-brand" href="#">Start Bootstrap</a>-->
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            
             <div class="logo">
-            <div class="col-lg-4"><a href="home.php"><img src="img/wednesday_logo1.png" alt=""></a></div>
+            <div class="col-lg-4"><a href="home.php"><img src="img/wednesday_logo1.png" alt="Wednesday"></a></div>
             </div>
             <div class="col-lg-8">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -70,10 +67,10 @@ $myData = mysql_query($sql,$con);
                         <a href="catalog.php">Men</a>
                     </li>
                     <li>
-                        <a href="#">About</a>
+                        <a href="client.php">Sign In</a>
                     </li>
                     <li>
-                        <a href="client.php">Sign In</a>
+                        <a href="#">About</a>
                     </li>
                  <li>
                          <a href="cart.php"><img src="img/shoppingbag.png" alt=""></a>
@@ -106,17 +103,17 @@ $myData = mysql_query($sql,$con);
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <h1 class="section-heading">Currently On Sale</h1>
                      <?php
                     while ($row = mysql_fetch_array($myData))  
                     echo'
-                    <div class="col-md-12">
+                    <div class="col-sm-12 col-lg-12 col-md-12">
                         <div class="thumbnail">
-                            <a href="product_details.php?id='.$row['productID'].'"><img src="'.$row['productimage'].'" alt="'.$row['productname'].'"></a>
+                            <a href="'.$row['productlocation'].'"><img src="'.$row['productimage'].'" alt="'.$row['productname'].'"></a>
                             <div class="caption">
                                 <h2 class="pull-right" style="color:#d824c9;">$'.$row['price'].'</h2>
-                                <h2><a href="product_details.php?id='.$row['productID'].'">'.$row['productname'].'</a>
+                                <h2><a href="'.$row['productlocation'].'">'.$row['productname'].'</a>
                                 </h2>
                               <p>'.$row['description'].'</p>
                             </div>
@@ -135,7 +132,7 @@ $myData = mysql_query($sql,$con);
                     '
                     ?>
                 </div>
-                 <div class="col-md-6">
+                 <div class="col-lg-6">
                     <h1 class="section-heading">Halloween Sale</h1>
                     <img class="img-responsive img-center roundcorners" src="img/halloween1.png" height="500" alt="">
                 </div>
@@ -146,7 +143,7 @@ $myData = mysql_query($sql,$con);
      <section>-->
         <div class="container">
             <h1 style="text-align:center;">Like, Mean Deals</h1>
-            <div class="col-md-4">
+            <div class="col-sm-4 col-lg-4 col-md-4">
                 <div class="thumbnail">
                     <a href="product/coat.php">
                         <img src="img/items/coat.jpg" alt="Pink Queen">
@@ -154,7 +151,7 @@ $myData = mysql_query($sql,$con);
                     <h2 style="text-align:center;">Pink Queen</h2>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4 col-lg-4 col-md-4">
                 <div class="thumbnail">
                     <a href="product/furvest.php">
                         <img src="img/items/furvest.jpg" alt="Pretty Pastel">
@@ -162,7 +159,7 @@ $myData = mysql_query($sql,$con);
                     <h2 style="text-align:center;">Pretty Pastel</h2>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4 col-lg-4 col-md-4">
                 <div class="thumbnail">
                     <a href="product/halter.php">
                         <img src="img/items/halter.jpg" alt="Little Bow">

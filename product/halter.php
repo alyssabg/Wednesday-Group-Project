@@ -5,15 +5,13 @@ if (!$con) {
 }
 mysql_select_db("al461752",$con);
 
-$id = $_GET['id'];
-
-$sql = "SELECT * FROM Products WHERE productID = $id";
+$sql = 'SELECT * FROM Products where productID=4';
 $myData = mysql_query($sql,$con);
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
-
 
 <head>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -26,11 +24,11 @@ $myData = mysql_query($sql,$con);
     <title>Wednesday Catalog Item - Alyssa Gagnon</title>
     
         <style>
-			@import url('css/bootstrap.css');
-			@import url('css/bootstrap.min.css');
-			@import url('css/shop-homepage-detail.css');
-			@import url('css/full-width-pics.css');
-			@import url('css/styles.css');
+			@import url('../css/bootstrap.css');
+			@import url('../css/bootstrap.min.css');
+			@import url('../css/shop-homepage.css');
+			@import url('../css/full-width-pics.css');
+			@import url('../css/styles.css');
 			@import url(https://fonts.googleapis.com/css?family=Montserrat);
 		</style>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -57,10 +55,7 @@ $myData = mysql_query($sql,$con);
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
-           <div class="navbar-header">
-           	<div class="mobilelogo">
-            	<a href="home.php"><img src="img/wednesday_logo1.png" alt=""></a>
-            </div>
+           <!-- <div class="navbar-header">-->
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -68,33 +63,28 @@ $myData = mysql_query($sql,$con);
                     <span class="icon-bar"></span>
                 </button>
                 <!--<i class="fa fa-search"></i>-->
-               <!-- <a class="navbar-brand" href="#">Start Bootstrap</a>-->
-            </div>
+               <!-- <a class="navbar-brand" href="#">Start Bootstrap</a>
+            </div>-->
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="logo">
-            <div class="col-lg-4"><a href="home.php"><img src="img/wednesday_logo1.png" alt="Wednesday"></a></div>
-            </div>
+            <div class="col-lg-4"><img src="../img/wednesday_logo1.png" alt=""></div>
             <div class="col-lg-8">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="home.php">Home</a>
+                        <a href="../home.php">Home</a>
                         	
                     </li>
                     <li>
-                        <a href="catalog.php">Women</a>
+                        <a href="../catalog.php">Women</a>
                     </li>
                     <li>
-                        <a href="catalog.php">Men</a>
+                        <a href="../catalog.php">Men</a>
                     </li>
                     <li>
-                        <a href="#">About</a>
+                        <a href="../client.php">Sign In</a>
                     </li>
                     <li>
-                        <a href="client.php">Sign In</a>
-                    </li>
-                    <li>
-                         <a href="cart.php"><img src="img/shoppingbag.png" alt=""></a>
+                         <a href="../cart.php"><img src="../img/shoppingbag.png" alt=""></a>
                     </li>
                 </ul>
                <form class="navbar-form" role="search">
@@ -127,7 +117,7 @@ $myData = mysql_query($sql,$con);
                 <div class="thumbnail">
 					<div class="row">
 					<div class="col-md-6">
-                    <img src="'.$row['productimage'].'" alt="'.$row['productname'].'">
+                    <img src="../'.$row['productimage'].'" alt="'.$row['productname'].'">
 					</div>
 					<div class="col-md-5">
                     <div class="caption-full">
@@ -140,7 +130,7 @@ $myData = mysql_query($sql,$con);
 					   <a class="btn btn-default">L</a>
 					   <br>
 					   <br>
-					   <a href="cart.php" class="btn btn-default pull-right">Add To Cart</a>
+					   <a href="../cart.php" class="btn btn-default pull-right">Add To Cart</a>
                     </div>
 					<br>
 					<br>
@@ -229,7 +219,9 @@ $myData = mysql_query($sql,$con);
                 <div class="col-lg-6">
                     <p>This site is not official and is an assignment for a UCF Digital Media course</p>
                     <p>designed by Alyssa Gagnon</p>
-                   
+                    <button type="button" class="btn btn-success pull-left">
+                            <a href="../admin.php" style="color:white;">Admin </a><span class="glyphicon glyphicon-user"></span>
+                        </button>
                 </div>
                 <div class="col-lg-3">
                 	<p><strong>Contact</strong></p>
@@ -256,10 +248,10 @@ $myData = mysql_query($sql,$con);
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="../js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 
 </body>
 

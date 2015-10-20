@@ -55,7 +55,10 @@ $myData = mysql_query($sql,$con);
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
-           <!-- <div class="navbar-header">-->
+          <div class="navbar-header">
+          <div class="mobilelogo">
+            <a href="home.php"><img src="img/wednesday_logo1.png" alt=""></a>
+            </div>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -63,10 +66,13 @@ $myData = mysql_query($sql,$con);
                     <span class="icon-bar"></span>
                 </button>
               
-               <!-- <a class="navbar-brand" href="#">Start Bootstrap</a>
-            </div>-->
+               <!-- <a class="navbar-brand" href="#">Start Bootstrap</a>-->
+            </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="col-lg-4"><img src="img/wednesday_logo1.png" alt=""></div>
+            
+            <div class="logo">
+            <div class="col-lg-4"><a href="home.php"><img src="img/wednesday_logo1.png" alt=""></a></div>
+            </div>
             <div class="col-lg-8">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             
@@ -80,6 +86,9 @@ $myData = mysql_query($sql,$con);
                     </li>
                     <li>
                         <a href="catalog.php">Men</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
                     </li>
                     <li>
                         <a href="client.php">Sign In</a>
@@ -111,10 +120,20 @@ $myData = mysql_query($sql,$con);
 
             <div class="col-md-3">
                 <div class="list-group">
-                    <a href="#" class="list-group-item">Tops</a>
+                	<div class="list-group-item" style="text-align:center"><b>Women</b></div>
+                    <a href="#" class="list-group-item">Shirts</a>
                     <a href="#" class="list-group-item">Bottoms</a>
-                    <a href="#" class="list-group-item">Outerwear</a>
-                     <a href="#" class="list-group-item">Mens</a>
+                    <a href="#" class="list-group-item">Dresses</a>
+                     <a href="#" class="list-group-item">Jackets</a>
+                     <a href="#" class="list-group-item">Shoes</a>
+                     <a href="#" class="list-group-item">Accesories</a>
+                </div>
+                
+                <div class="list-group">
+                	<div class="list-group-item" style="text-align:center"><b>Men</b></div>
+                    <a href="#" class="list-group-item">Shirts</a>
+                    <a href="#" class="list-group-item">Bottoms</a>
+                     <a href="#" class="list-group-item">Accesories</a>
                 </div>
             </div>
 
@@ -180,10 +199,12 @@ $myData = mysql_query($sql,$con);
                 <div class="col-lg-6">
                     <p>This site is not official and is an assignment for a UCF Digital Media course</p>
                     <p>designed by Alyssa Gagnon</p>
-                    <button type="button" class="btn btn-success pull-left">
+                   
+                 <!--   <button type="button" class="btn btn-success pull-left">
                             <a href="admin.php" style="color:white;">Admin </a><span class="glyphicon glyphicon-user"></span>
-                        </button>
+                        </button>-->
                 </div>
+               
                 <div class="col-lg-3">
                 	<p><strong>Contact</strong></p>
                     <p>1-800-2468</p>

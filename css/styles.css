@@ -207,3 +207,48 @@ a:hover, a:active {
 		.panel-body{
 			display: none;
 		}
+		
+/*Logo resize*/
+@media (max-width:767px) {
+	.logo{
+		display: none;
+	}
+	.navbar-nav>li>a {
+	
+	padding-top: 10px;
+	padding-bottom: 20px;
+	line-height: 20px
+	
+}
+.nav>li>a {
+	padding-top: 10px;
+	padding-bottom: 20px;
+	line-height: 20px
+}
+
+.navbar-nav>li{
+	
+	padding-bottom:20px;
+
+}
+
+}
+
+@media screen and (min-width:0px) and (max-width:768px){
+	.mobilelogo{
+		display:block;
+		float:left;
+	}
+	.carttitles{
+		display:none;
+	}
+}
+@media screen and (min-width:769px) and (min-width:1024px){
+	.mobilelogo{
+		display:none;
+	}
+	.cartmobile{
+		display:none;
+	}
+	
+}

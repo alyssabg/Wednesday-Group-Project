@@ -15,6 +15,10 @@ $myData = mysql_query($sql,$con);
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 <title>Wednesday Client - Alyssa Gagnon</title>
 
 <style>
@@ -34,7 +38,10 @@ $myData = mysql_query($sql,$con);
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
-           <!-- <div class="navbar-header">-->
+          <div class="navbar-header">
+           	<div class="mobilelogo">
+            		<a href="home.php"><img src="img/wednesday_logo1.png" alt=""></a>
+            	</div>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -42,10 +49,12 @@ $myData = mysql_query($sql,$con);
                     <span class="icon-bar"></span>
                 </button>
                 
-               <!-- <a class="navbar-brand" href="#">Start Bootstrap</a>
-            </div>-->
+               <!-- <a class="navbar-brand" href="#">Start Bootstrap</a>-->
+            </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="col-lg-4"><img src="img/wednesday_logo1.png" alt=""></div>
+            <div class="logo">
+            <div class="col-lg-4"><a href="home.php"><img src="img/wednesday_logo1.png" alt="Wednesday"></a></div>
+            </div>
             <div class="col-lg-8">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             
@@ -62,6 +71,9 @@ $myData = mysql_query($sql,$con);
                     </li>
                     <li>
                         <a href="client.php">Sign In</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
                     </li>
                  <li>
                          <a href="cart.php"><img src="img/shoppingbag.png" alt=""></a>
@@ -84,38 +96,19 @@ $myData = mysql_query($sql,$con);
         <!-- /.container -->
     </nav>
     
-    
-    <div class="container" >
-    <div class="row">
-    	<div class="col-md-8">
-        <h1 style="text-align:center;">Your Account</h1>
-        </div>
-        <div class="col-md-4">
-        <h1 style="text-align:center;">Today's Sale</h1>
-        </div>
-    </div>
-      <div class="row">
-     <!-- <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
-           <A href="edit.html" >Edit Profile</A>
-
-        <A href="edit.html" >Logout</A>
-       <br>
-<p class=" text-info">May 05,2014,03:00 pm </p>
-      </div>-->
-        <div class="col-xs-8 col-sm-8 " >
-   
-   
-          <div class="panel panel-info" >
-            <div class="panel-heading">
-              <h3 class="panel-title">User Name</h3>
-            </div>
-            <div class="panel-body2">
-              <div class="row">
-        
-                
-               
-                <div class=" col-md-12  "> 
-                  <div class="table table-user-information" >
+    <section>
+    <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                	<h1 class="section-heading">Your Account</h1>
+                     <div class="panel panel-info" >
+            			<div class="panel-heading">
+              				<h3 class="panel-title">User Name</h3>
+            			</div>
+            			<div class="panel-body2">
+              				<div class="row">
+                            	<div class=" col-md-12  "> 
+                  					<div class="table table-user-information" >
                    
                       <div class="row">
                       	<div class="col-md-6">
@@ -177,44 +170,31 @@ $myData = mysql_query($sql,$con);
                      
                     <span class="pull-right" style=" margin-top: 280px; margin-bottom:20px; margin-right:20px;">
                             <a href="#" style="color:white;" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i></a>
-                            <!--<a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>-->
+                         
                         </span>
+                  	</div>
                   </div>
-                  
-                 <!-- <a href="#" class="btn btn-primary">My Sales Performance</a>
-                  <a href="#" class="btn btn-primary">Team Sales Performance</a>-->
-                </div>
-              </div>
+            	</div>
             </div>
-                <!-- <div class="panel-footer">-->
-                      <!--  <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>-->
-                       
-                    <!--</div>-->
+             
             
           </div>
-        </div>
-        
-        
-          <div class="row">
-
-    
-
-
-					 <?php
+                </div>
+                 <div class="col-md-4">
+                  <h1 class="section-heading">Sale</h1>
+                     <?php
                     while ($row = mysql_fetch_array($myData))  
                     echo'
-                    <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="col-md-12">
                         <div class="thumbnail">
-                            <a href="'.$row['productlocation'].'">
-								<img src="'.$row['productimage'].'" alt="'.$row['productname'].'">
-							</a>
+                            <a href="product_details.php?id='.$row['productID'].'"><img src="'.$row['productimage'].'" alt="'.$row['productname'].'"></a>
                             <div class="caption">
-                                <h4 class="pull-right">$'.$row['price'].'</h4>
-                                <h4><a href="'.$row['productlocation'].'">'.$row['productname'].'</a>
-                                </h4>
-                                <p>'.$row['description'].'</p>
+                                <h2 class="pull-right" style="color:#d824c9;">$'.$row['price'].'</h2>
+                                <h2><a href="product_details.php?id='.$row['productID'].'">'.$row['productname'].'</a>
+                                </h2>
+                              <p>'.$row['description'].'</p>
                             </div>
-                            <div class="ratings">
+                           <div class="ratings">
                                 <p class="pull-right">15 reviews</p>
                                 <p>
                                     <span class="glyphicon glyphicon-star"></span>
@@ -228,17 +208,13 @@ $myData = mysql_query($sql,$con);
                     </div>
                     '
                     ?>
-
-
-
-               
-
                 </div>
-        
-        
-        
-      </div>
-    </div>
+            </div>
+        </div>
+    
+    
+    
+    </section>
     
     
     
@@ -249,9 +225,7 @@ $myData = mysql_query($sql,$con);
                 <div class="col-lg-6">
                     <p>This site is not official and is an assignment for a UCF Digital Media course</p>
                     <p>designed by Alyssa Gagnon</p>
-                    <button type="button" class="btn btn-success pull-left">
-                            <a href="admin.php" style="color:white;">Admin </a><span class="glyphicon glyphicon-user"></span>
-                        </button>
+                   
                 </div>
                 <div class="col-lg-3">
                 	<p><strong>Contact</strong></p>
