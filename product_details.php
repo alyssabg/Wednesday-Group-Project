@@ -1,13 +1,13 @@
 <?php
-$con = mysql_connect("sulley.cah.ucf.edu","al461752","Bentley93!");
+$con = mysql_connect("sulley.cah.ucf.edu","ka578143","DancinG#93");
 if (!$con) {
 	die("Can not Connect: " . mysql_error());
 }
-mysql_select_db("al461752",$con);
+mysql_select_db("ka578143",$con);
 
 $id = $_GET['id'];
 
-$sql = "SELECT * FROM Products WHERE productID = $id";
+$sql = "SELECT * FROM wednesday WHERE productID = $id";
 $myData = mysql_query($sql,$con);
 ?>
 
@@ -34,21 +34,7 @@ $myData = mysql_query($sql,$con);
 			@import url(https://fonts.googleapis.com/css?family=Montserrat);
 		</style>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <!-- Bootstrap Core CSS -->
-<!--    <link href="../css/bootstrap.min.css" rel="stylesheet">-->
 
-    <!-- Custom CSS -->
-    <!--<link href="../css/business-frontpage.css" rel="stylesheet">-->
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-   <!-- <style>
-        a,p,h1,h2,h3{font-family:Arial, Helvetica, sans-serif}
-    </style>-->
 </head>
 
 <body>
@@ -127,19 +113,22 @@ $myData = mysql_query($sql,$con);
                 <div class="thumbnail">
 					<div class="row">
 					<div class="col-md-6">
-                    <img src="'.$row['productimage'].'" alt="'.$row['productname'].'">
+                    <img src="'.$row['productImage'].'" alt="'.$row['productName'].'">
 					</div>
 					<div class="col-md-5">
-                    <div class="caption-full">
-                        <h1 class="pull-right">$'.$row['price'].'</h1>
-                        <h1><a href="#">'.$row['productname'].'</a>
-                        </h1>
+                    <div class="caption-full">  
+                        <h2>'.$row['productName'].'</h2>
+                        <hr>
+                        <h1>'.$row['price'].'</h1>
                        <h3>'.$row['description'].'</h3>
+                       <h4 class="pull-left">Stock: '.$row['stock'].'</h4>
+                       <h4 class="pull-right">Weight: '.$row['weight'].'</h4>
+                       
+                       <br><br><br><hr>
 					   <a class="btn btn-default">S</a>
 					   <a class="btn btn-default">M</a>
 					   <a class="btn btn-default">L</a>
-					   <br>
-					   <br>
+
 					   <a href="cart.php" class="btn btn-default pull-right">Add To Cart</a>
                     </div>
 					<br>

@@ -1,11 +1,11 @@
 <?php
-$con = mysql_connect("sulley.cah.ucf.edu","al461752","Bentley93!");
+$con = mysql_connect("sulley.cah.ucf.edu","ka578143","DancinG#93");
 if (!$con) {
 	die("Can not Connect: " . mysql_error());
 }
-mysql_select_db("al461752",$con);
+mysql_select_db("ka578143",$con);
 
-$sql = 'SELECT * FROM Products';
+$sql = 'SELECT * FROM wednesday';
 $myData = mysql_query($sql,$con);
 ?>
 
@@ -152,13 +152,14 @@ $myData = mysql_query($sql,$con);
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
                             <a href="product_details.php?id='.$row['productID'].'">
-								<img src="'.$row['productimage'].'" alt="'.$row['productname'].'">
+								<img src="'.$row['productThumb'].'" alt="'.$row['productName'].'">
 							</a>
                             <div class="caption">
-                                <h4 class="pull-right">$'.$row['price'].'</h4>
-                                <h4><a href="product_details.php?id='.$row['productID'].'">'.$row['productname'].'</a>
-                                </h4>
+                                <h5><a href="product_details.php?id='.$row['productID'].'">'.$row['productName'].'</a>
+                                </h5>
                                 <p>'.$row['description'].'</p>
+                                <p class="pull-left">Stock: '.$row['stock'].'</p>
+                                <p class="pull-right">'.$row['price'].'</p>
                             </div>
                             <div class="ratings">
                                 <p class="pull-right">15 reviews</p>
