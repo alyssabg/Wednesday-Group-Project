@@ -1,11 +1,11 @@
 <?php
-$con = mysql_connect("sulley.cah.ucf.edu","al461752","Bentley93!");
+$con = mysql_connect("sulley.cah.ucf.edu","ka578143","DancinG#93");
 if (!$con) {
 	die("Can not Connect: " . mysql_error());
 }
-mysql_select_db("al461752",$con);
+mysql_select_db("ka578143",$con);
 
-$sql = 'SELECT * FROM Products where productID=1';
+$sql = 'SELECT * FROM wednesday where productID=659';
 $myData = mysql_query($sql,$con);
 ?>
 
@@ -19,7 +19,7 @@ $myData = mysql_query($sql,$con);
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<title>Wednesday Client - Alyssa Gagnon</title>
+<title>Wednesday Client</title>
 
 <style>
 @import url('css/bootstrap.css');
@@ -64,10 +64,10 @@ $myData = mysql_query($sql,$con);
                         	
                     </li>
                     <li>
-                        <a href="catalog.php">Women</a>
+                        <a href="womenscatalog.php">Women</a>
                     </li>
                     <li>
-                        <a href="catalog.php">Men</a>
+                        <a href="menscatalog.php">Men</a>
                     </li>
                     <li>
                         <a href="client.php">Sign In</a>
@@ -187,10 +187,10 @@ $myData = mysql_query($sql,$con);
                     echo'
                     <div class="col-md-12">
                         <div class="thumbnail">
-                            <a href="product_details.php?id='.$row['productID'].'"><img src="'.$row['productimage'].'" alt="'.$row['productname'].'"></a>
+                            <a href="product_details.php?id='.$row['productID'].'"><img src="'.$row['productThumb'].'" alt="'.$row['productName'].'"></a>
                             <div class="caption">
-                                <h2 class="pull-right" style="color:#d824c9;">$'.$row['price'].'</h2>
-                                <h2><a href="product_details.php?id='.$row['productID'].'">'.$row['productname'].'</a>
+                                <h2 class="pull-right" style="color:#d824c9;">'.$row['price'].'</h2>
+                                <h2><a href="product_details.php?id='.$row['productID'].'">'.$row['productName'].'</a>
                                 </h2>
                               <p>'.$row['description'].'</p>
                             </div>

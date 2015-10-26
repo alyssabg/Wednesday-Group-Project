@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Wednesday Confirm - Alyssa Gagnon</title>
+<title>Wednesday Confirm</title>
 
 <style>
 @import url('css/bootstrap.css');
@@ -50,10 +50,10 @@
                         	
                     </li>
                     <li>
-                        <a href="catalog.php">Women</a>
+                        <a href="womenscatalog.php">Women</a>
                     </li>
                     <li>
-                        <a href="catalog.php">Men</a>
+                        <a href="menscatalog.php">Men</a>
                     </li>
                     <li>
                         <a href="#">About</a>

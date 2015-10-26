@@ -5,7 +5,7 @@ if (!$con) {
 }
 mysql_select_db("ka578143",$con);
 
-$sql = 'SELECT * FROM wednesday';
+$sql = 'SELECT * FROM wednesday where gender="men" AND category="accessories"';
 $myData = mysql_query($sql,$con);
 ?>
 
@@ -120,20 +120,20 @@ $myData = mysql_query($sql,$con);
 
             <div class="col-md-3">
                 <div class="list-group">
-                	<div class="list-group-item" style="text-align:center"><b>Women</b></div>
-                    <a href="#" class="list-group-item">Shirts</a>
-                    <a href="#" class="list-group-item">Bottoms</a>
-                    <a href="#" class="list-group-item">Dresses</a>
-                     <a href="#" class="list-group-item">Jackets</a>
-                     <a href="#" class="list-group-item">Shoes</a>
-                     <a href="#" class="list-group-item">Accesories</a>
+                    <div class="list-group-item" style="text-align:center"><b>Women</b></div>
+                    <a href="womensshirts.php" class="list-group-item">Shirts</a>
+                    <a href="womensbottoms.php" class="list-group-item">Bottoms</a>
+                    <a href="womensdresses.php" class="list-group-item">Dresses</a>
+                     <a href="womensjackets.php" class="list-group-item">Jackets</a>
+                     <a href="womensshoes.php" class="list-group-item">Shoes</a>
+                     <a href="womensaccessories.php" class="list-group-item">Accessories</a>
                 </div>
                 
                 <div class="list-group">
-                	<div class="list-group-item" style="text-align:center"><b>Men</b></div>
-                    <a href="#" class="list-group-item">Shirts</a>
-                    <a href="#" class="list-group-item">Bottoms</a>
-                     <a href="#" class="list-group-item">Accesories</a>
+                    <div class="list-group-item" style="text-align:center"><b>Men</b></div>
+                    <a href="mensshirts.php" class="list-group-item">Shirts</a>
+                    <a href="mensbottoms.php" class="list-group-item">Bottoms</a>
+                     <a href="mensaccessories.php" class="list-group-item">Accessories</a>
                 </div>
             </div>
 

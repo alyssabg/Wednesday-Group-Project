@@ -17,7 +17,7 @@ $myData = mysql_query($sql,$con);
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Wednesday Admin - Alyssa Gagnon</title>
+<title>Wednesday Admin</title>
 <style>
 @import url('css/bootstrap.css');
 @import url('css/bootstrap.min.css');
@@ -61,10 +61,10 @@ $myData = mysql_query($sql,$con);
                         	
                     </li>
                     <li>
-                        <a href="catalog.php">Women</a>
+                        <a href="womenscatalog.php">Women</a>
                     </li>
                     <li>
-                        <a href="catalog.php">Men</a>
+                        <a href="menscatalog.php">Men</a>
                     </li>
                     <li>
                         <a href="#">About</a>

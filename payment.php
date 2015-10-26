@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Wednesday Cart - Alyssa Gagnon</title>
+<title>Wednesday Cart</title>
 
 <style>
 @import url('css/bootstrap.css');
@@ -42,10 +42,10 @@
                         	
                     </li>
                     <li>
-                        <a href="catalog.php">Women</a>
+                        <a href="womenscatalog.php">Women</a>
                     </li>
                     <li>
-                        <a href="catalog.php">Men</a>
+                        <a href="menscatalog.php">Men</a>
                     </li>
                     <li>
                         <a href="client.php">Sign In</a>
