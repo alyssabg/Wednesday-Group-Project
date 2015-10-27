@@ -1,12 +1,26 @@
 <?php
+
+
+//$req = $_POST['q'.session_name()];
 $con = mysql_connect("sulley.cah.ucf.edu","ka578143","DancinG#93");
 if (!$con) {
-	die("Can not Connect: " . mysql_error());
+    die("Can not Connect: " . mysql_error());
 }
 mysql_select_db("ka578143",$con);
 
-$sql = 'SELECT * FROM wednesday where gender="men"';
+if(isset($_POST['menShirts'])){
+    $sql = 'SELECT * FROM wednesday WHERE gender="men" AND category="shirt"';
+} else if (isset($_POST['menBottoms'])){
+    $sql = 'SELECT * FROM wednesday WHERE gender="men" AND category="bottoms"';
+} else if (isset($_POST['menAccessories'])){
+    $sql = 'SELECT * FROM wednesday WHERE gender="men" AND category="accessories"';
+} else {
+    $sql = 'SELECT * FROM wednesday WHERE gender="men"';
+}
+
+echo("<!-- ".$sql."-->");
 $myData = mysql_query($sql,$con);
+ 
 ?>
 
 
@@ -33,7 +47,7 @@ $myData = mysql_query($sql,$con);
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 </style>
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Bootstrap Core CSS -->
     <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
 
@@ -79,7 +93,7 @@ $myData = mysql_query($sql,$con);
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
                         <a href="home.php">Home</a>
-                        	
+                            
                     </li>
                     <li>
                         <a href="catalog.php">Women</a>
@@ -119,22 +133,16 @@ $myData = mysql_query($sql,$con);
         <div class="row">
 
             <div class="col-md-3">
-                <div class="list-group">
-                    <div class="list-group-item" style="text-align:center"><b>Women</b></div>
-                    <a href="womensshirts.php" class="list-group-item">Shirts</a>
-                    <a href="womensbottoms.php" class="list-group-item">Bottoms</a>
-                    <a href="womensdresses.php" class="list-group-item">Dresses</a>
-                     <a href="womensjackets.php" class="list-group-item">Jackets</a>
-                     <a href="womensshoes.php" class="list-group-item">Shoes</a>
-                     <a href="womensaccessories.php" class="list-group-item">Accessories</a>
-                </div>
-                
-                <div class="list-group">
-                    <div class="list-group-item" style="text-align:center"><b>Men</b></div>
-                    <a href="mensshirts.php" class="list-group-item">Shirts</a>
-                    <a href="mensbottoms.php" class="list-group-item">Bottoms</a>
-                     <a href="mensaccessories.php" class="list-group-item">Accessories</a>
-                </div>
+
+                <form method="post">
+                    <div class="list-group">
+                            <div class="list-group-item" style="text-align:center"><b>Men</b></div>
+                            <button class="list-group-item" style="text-align:center" type="submit" name="menShirts">Shirts</button>
+                            <button class="list-group-item" style="text-align:center" type="submit" name="menBottoms">Bottoms</button>
+                            <button class="list-group-item" style="text-align:center" type="submit" name="menAccessories">Accessories</button>
+                    </div>
+                </form>
+
             </div>
 
             <div class="col-md-9">
@@ -146,14 +154,14 @@ $myData = mysql_query($sql,$con);
     
 
 
-					 <?php
+                     <?php
                     while ($row = mysql_fetch_array($myData))  
                     echo'
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
                             <a href="product_details.php?id='.$row['productID'].'">
-								<img src="'.$row['productThumb'].'" alt="'.$row['productName'].'">
-							</a>
+                                <img src="'.$row['productThumb'].'" alt="'.$row['productName'].'">
+                            </a>
                             <div class="caption">
                                 <h5><a href="product_details.php?id='.$row['productID'].'">'.$row['productName'].'</a>
                                 </h5>
@@ -207,13 +215,13 @@ $myData = mysql_query($sql,$con);
                 </div>
                
                 <div class="col-lg-3">
-                	<p><strong>Contact</strong></p>
+                    <p><strong>Contact</strong></p>
                     <p>1-800-2468</p>
                     <p>4000 Central Florida Blvd</p>
                     <p>Orlando, FL 32816</p>
                 </div>
                 <div class="col-lg-3">
-                	<i class="fa fa-facebook fa-2x"></i>
+                    <i class="fa fa-facebook fa-2x"></i>
                     <i class="fa fa-twitter fa-2x"></i>
                     <i class="fa fa-google-plus fa-2x"></i>
                     <i class="fa fa-pinterest-p fa-2x"></i>

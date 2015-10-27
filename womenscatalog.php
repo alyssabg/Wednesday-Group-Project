@@ -5,7 +5,23 @@ if (!$con) {
 }
 mysql_select_db("ka578143",$con);
 
-$sql = 'SELECT * FROM wednesday where gender="women"';
+
+if (isset($_POST['womenShirts'])){
+    $sql = 'SELECT * FROM wednesday WHERE gender="women" AND category="shirt"';
+} else if (isset($_POST['womenBottoms'])){
+    $sql = 'SELECT * FROM wednesday WHERE gender="women" AND category="bottoms"';
+} else if (isset($_POST['womenDresses'])){
+    $sql = 'SELECT * FROM wednesday WHERE gender="women" AND category="dress"';
+} else if (isset($_POST['womenJackets'])){
+    $sql = 'SELECT * FROM wednesday WHERE gender="women" AND category="jacket"';
+} else if (isset($_POST['womenShoes'])){
+    $sql = 'SELECT * FROM wednesday WHERE gender="women" AND category="shoes"';
+} else if (isset($_POST['womenAccessories'])){
+    $sql = 'SELECT * FROM wednesday WHERE gender="women" AND category="accessories"';
+} else {
+    $sql = 'SELECT * FROM wednesday where gender="women"';
+}
+
 $myData = mysql_query($sql,$con);
 ?>
 
@@ -119,22 +135,19 @@ $myData = mysql_query($sql,$con);
         <div class="row">
 
             <div class="col-md-3">
-                <div class="list-group">
-                	<div class="list-group-item" style="text-align:center"><b>Women</b></div>
-                    <a href="womensshirts.php" class="list-group-item">Shirts</a>
-                    <a href="womensbottoms.php" class="list-group-item">Bottoms</a>
-                    <a href="womensdresses.php" class="list-group-item">Dresses</a>
-                     <a href="womensjackets.php" class="list-group-item">Jackets</a>
-                     <a href="womensshoes.php" class="list-group-item">Shoes</a>
-                     <a href="womensaccessories.php" class="list-group-item">Accessories</a>
-                </div>
-                
-                <div class="list-group">
-                	<div class="list-group-item" style="text-align:center"><b>Men</b></div>
-                    <a href="mensshirts.php" class="list-group-item">Shirts</a>
-                    <a href="mensbottoms.php" class="list-group-item">Bottoms</a>
-                     <a href="mensaccessories.php" class="list-group-item">Accessories</a>
-                </div>
+
+                <form method="post">
+                    <div class="list-group">
+                        <div class="list-group-item" style="text-align:center"><b>Women</b></div>
+                            <button class="list-group-item" style="text-align:center" type="submit" name="womenShirts">Shirts</button>
+                            <button class="list-group-item" style="text-align:center" type="submit" name="womenBottoms">Bottoms</button>
+                            <button class="list-group-item" style="text-align:center" type="submit" name="womenDresses">Dresses</button>
+                            <button class="list-group-item" style="text-align:center" type="submit" name="womenJackets">Jackets</button>
+                            <button class="list-group-item" style="text-align:center" type="submit" name="womenShoes">Shoes</button>
+                            <button class="list-group-item" style="text-align:center" type="submit" name="womenAccessories">Accessories</button>
+                        </div>
+                </form>
+
             </div>
 
             <div class="col-md-9">
