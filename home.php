@@ -134,6 +134,9 @@ $myData = mysql_query($sql,$con);
                     </div>
                     '
                     ?>
+                    <?php
+                    mysql_close($con);
+                    ?>
                 </div>
                  <div class="col-md-6">
                     <h1 class="section-heading">Halloween Sale</h1>
@@ -145,7 +148,48 @@ $myData = mysql_query($sql,$con);
     
      <section>-->
         <div class="container">
+        </br>
             <h1 style="text-align:center;">Like, Mean Deals</h1>
+        </br>
+            <?php
+                $con = mysql_connect("sulley.cah.ucf.edu","ka578143","DancinG#93");
+                if (!$con) {
+                    die("Can not Connect: " . mysql_error());
+                }
+                mysql_select_db("ka578143",$con);
+
+                $sql = 'SELECT * FROM wednesday where productID=46 || productID=215 || productID=405';
+                $myData = mysql_query($sql,$con);
+                ?>
+
+                <?php
+                    while ($row = mysql_fetch_array($myData))  
+                    echo'
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <a href="product_details.php?id='.$row['productID'].'"><img src="'.$row['productThumb'].'" alt="'.$row['productThumb'].'"></a>
+                            <div class="caption">
+                                <h2 class="pull-right" style="color:#d824c9;">'.$row['price'].'</h2>
+                                <h2><a href="product_details.php?id='.$row['productID'].'">'.$row['productName'].'</a>
+                                </h2>
+                              <p>'.$row['description'].'</p>
+                            </div>
+                           <div class="ratings">
+                                <p class="pull-right">15 reviews</p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    '
+                    ?>
+
+            <!--<h1 style="text-align:center;">Like, Mean Deals</h1>
             <div class="col-md-4">
                 <div class="thumbnail">
                     <a href="product/coat.php">
@@ -170,7 +214,7 @@ $myData = mysql_query($sql,$con);
                     <h2 style="text-align:center;">Little Bow</h2>
                 </div>
             </div>
-        </div>
+        </div>-->
 
     </section>
 
