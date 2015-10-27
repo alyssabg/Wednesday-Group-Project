@@ -153,8 +153,90 @@ $myData = mysql_query($sql,$con);
                 <div class="well">
 
                     <div class="text-right">
-                        <a class="btn btn-default">Leave a Review</a>
+                        <button type="button" onclick="showReview()" class="btn btn-success pull-right">
+                            Leave a Review<span class="glyphicon glyphicon-chevron-down"></span>
+                        </button>
+                        <br>
                     </div>
+
+                        <div class="container" id="review" style="visibility:hidden;">
+                            <?php
+                                // define variables and set to empty values
+                                $firstName = $lastName = $review = "";
+
+                                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                   $firstName = test_input($_POST["firstName"]);
+                                   $lastName = test_input($_POST["lastName"]);
+                                   $review = test_input($_POST["review"]);
+                                }
+
+                                function test_input($data) {
+                                   $data = trim($data);
+                                   $data = stripslashes($data);
+                                   $data = htmlspecialchars($data);
+                                   return $data;
+                                }
+                                $t=time();
+                            ?>
+
+   
+                            <div class="row">
+                                <div class="col-md-12 col-md-8">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">
+                                                Why are you so obsessed with me?
+                                            </h3>
+                                        </div>
+                                       
+                                        <div class="panel-body1">
+                                        
+                                            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
+                                        
+                                            <div class="row">
+                                                <div class="col-xs-6 col-md-6 pull-right">
+                                                    <div class="form-group">
+                                                        <label for="firstName">
+                                                            First Name</label>
+                                                        <input type="text" class="form-control" name="firstName" id="firstName"  required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6 col-md-6 pull-left">
+                                                    <div class="form-group">
+                                                        <label for="lastName">
+                                                            Last Name</label>
+                                                        <input type="text" class="form-control" name="lastName" id="lastName" required />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+
+                                          
+                                             <div class="row">
+                                                <div class="col-xs-4 col-md-4 pull-left">
+                                                    <div class="form-group">
+                                                        <label for="review">
+                                                            Review</label>
+                                                        <textarea type="text" class="form-control"  name="review" id="review" required></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-4 col-md-4 ">
+                                                    <div class="form-group">
+                                                        <input type="submit" onclick="showReview()" class="btn btn-success pull-right" name="submit" value="Submit">
+                                                    </span>
+                                                </input>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            </form>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
 
                     <hr>
 
@@ -198,6 +280,63 @@ $myData = mysql_query($sql,$con);
                             Anonymous
                             <span class="pull-right">15 days ago</span>
                             <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <?php
+                        function saveComment($contentID){
+                            $insert = array();
+                            $insert['content'] = $contentID;
+                            $insert['FirstName'] = strip_tags($this->registry->getObject('db')->sanitizeData($_POST['firstName']));
+                            $insert['LastName'] = $this->registry->getObject('db')->sanitizeData($_POST['lastName']);
+                            $insert['ReviewComment'] = strip_tags($this->registry->getObject('db')->sanitizeData($_POST['review']));
+                            $insert['IPAddress'] = $_SERVER['REMOTE_ADDR'];
+                            $valid = true;
+                            if( $_POST['firstName'] == '' ||
+                                $_POST['lastName'] == '' ||
+                                $_POST['review'] == ''){
+                                    $valid = false;
+                                }
+                        
+
+                        if($valid == true){
+                            $this->registry->getObject('db')->insertRecords('firstName',$insert);
+                            $this->registry->getObject('template')->getPage()->addTag('message_heading', 'Review added');
+                            $this->registry->getObject('template')->getPage()->addTag('message_heading', 'Your review has been added');
+                            $this->registry->getObject('template')->buildFromTemplates('header.tpl.php', 'message.tpl.php', 'footer.tpl.php');
+                        }
+                        else{
+                            $this->registry->getObject('template')->getPage()->addTag('message_heading', 'Error');
+                            $this->registry->getObject('template')->getPage()->addTag('message_heading', 'Either your name or review was empty, please try again');
+                            $this->registry->getObject('template')->buildFromTemplates('header.tpl.php', 'message.tpl.php', 'footer.tpl.php');
+                        }
+                    }
+        
+                    ?>
+                            <?php
+                                echo $firstName;
+                                echo "&nbsp;";
+                                echo $lastName;
+                            ?>
+
+                            <span class="pull-right">
+                                <?php
+                                    echo "<span class'pull-right'>";
+                                    echo(date("m-d-Y",$t));
+                                    echo "</span>";
+                                ?>
+                            </span>
+
+                            <?php
+                                echo "<br>";
+                                echo $review;
+                                echo "<br>";
+                            ?>
+
                         </div>
                     </div>
 
