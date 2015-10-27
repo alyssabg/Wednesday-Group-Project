@@ -380,6 +380,11 @@ $myData = mysql_query($sql,$con);
 				mysql_close($con);
 			?>
 
+            <script>
+    function showReview() {
+        document.getElementById("review").style.visibility = "visible";
+    }
+
    
     <!-- /.container -->
 
