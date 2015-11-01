@@ -7,7 +7,7 @@
 
 
 
-<title>Wednesday Cart</title>
+<title>Wednesday Signin</title>
 
 <style>
 @import url('css/bootstrap.css');
@@ -22,6 +22,7 @@
 </head>
 
 <body>
+<?php include_once("analyticstracking.php") ?>
 <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -58,7 +59,7 @@
                         <a href="menscatalog.php">Men</a>
                     </li>
                     <li>
-                        <a href="#">About</a>
+                        <a href="about.php">About</a>
                     </li>
                     <li>
                         <a href="signin.php">Sign In</a>
@@ -254,7 +255,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <p>This site is not official and is an assignment for a UCF Digital Media course</p>
-                    <p>designed by Alyssa Gagnon</p>
+                    <p>designed by Wednesday</p>
                 </div>
                 <div class="col-lg-3">
                 	<p><strong>Contact</strong></p>

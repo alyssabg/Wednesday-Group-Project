@@ -31,6 +31,7 @@ $myData = mysql_query($sql,$con);
 </head>
 
 <body>
+<?php include_once("analyticstracking.php") ?>
 <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -67,7 +68,7 @@ $myData = mysql_query($sql,$con);
                         <a href="menscatalog.php">Men</a>
                     </li>
                     <li>
-                        <a href="#">About</a>
+                        <a href="about.php">About</a>
                     </li>
                     <li>
                         <a href="client.php">Sign In</a>
@@ -349,7 +350,7 @@ $myData = mysql_query($sql,$con);
             <div class="row">
                 <div class="col-lg-6">
                     <p>This site is not official and is an assignment for a UCF Digital Media course</p>
-                    <p>designed by Alyssa Gagnon</p>
+                    <p>designed by Wednesday</p>
                 <!--    <button type="button" class="btn btn-success pull-left">
                             <a href="admin.php" style="color:white;">Admin </a><span class="glyphicon glyphicon-user"></span>
                         </button>-->

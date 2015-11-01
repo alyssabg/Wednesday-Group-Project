@@ -2,7 +2,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Wednesday Payment</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Wednesday Return</title>
 
 <style>
 @import url('css/bootstrap.css');
@@ -22,7 +25,10 @@
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
-           <!-- <div class="navbar-header">-->
+           <div class="navbar-header">
+           		<div class="mobilelogo">
+            		<a href="home.php"><img src="img/wednesday_logo1.png" alt=""></a>
+            	</div>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -30,10 +36,12 @@
                     <span class="icon-bar"></span>
                 </button>
                 
-               <!-- <a class="navbar-brand" href="#">Start Bootstrap</a>
-            </div>-->
+               <!-- <a class="navbar-brand" href="#">Start Bootstrap</a>-->
+            </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="logo">
             <div class="col-lg-4"><a href="home.php"><img src="img/wednesday_logo1.png" alt="Wednesday"></a></div>
+            </div>
             <div class="col-lg-8">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             
@@ -67,8 +75,8 @@
                 </div>
             </form>
            
-           <!-- <a href="#"><img src="img/shoppingbag.png"></a>-->
-            </div>
+          
+            	</div>
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -82,6 +90,67 @@
 
 
 <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+      
+      
+      <!---cool stuff goes here-->
+      
+      	<h1>Return and Shipping Policy</h1><br>
+			
+            <p><strong>Return Policy</strong></p>
+			<p>If for any reason you are not satisfied with the order you have made with Wednesday, please return items within 30 days of receipt.</p>
+			<p>There will be a return and exchange invoice included in every order.</p>
+			<p>We'll accept the return or exchange of unworn, unwashed or defective items.</p>
+			<p>Merchandise must be in new condition with tags attached and must be accompanied by the original receipt.</p>
+			<p>Your refund will be credited back to the original method of payment used to make the purchase.</p>
+			<p>Returns will be accepted through mail only.</p>
+			<p>Shipping charges will not be refunded unless the order was an error by us.</p><br>
+
+			<p>There may be a limited amount of stock for an item.</p>
+			<p>We suggest ordering a new item and return the item you do not want.</p>
+			<p>If you have requested an exchange, you will receive an email detailing the availability of the item and its shipping status.</p>
+			<p>Items in stock will be shipped within 48 to 78 hours to the shipping address.</p>
+			<p>If the item was sent to you as a gift, the refund will be credited to the original credit card used for the payment.</p>
+			<p>No additional shipping & handling charges will be added with exchanges.</p>
+			<p>Expect 7-14 days for the return to be processed.</p>
+			<p>We will send you an email confirming that your return or exchange has been processed.</p>
+			<p>Final Sale on all clearance items.</p><br>
+            
+            <p><strong>Shipping Policy</strong></p>
+           	<p>The cost of standard shipping (7-14 business days) depends on the cost of your order.</p>
+            <p>One day shipping is a minimum of $20 dollars. Priority Shipping (2-3 business days) is a minimum of $15 dollars.</p>
+            <p>We occasionally have promotions where shipping is free on orders over $50.</p>
+           	<p>Orders are shipped on business days only. Business days are from Monday to Friday, excluding holidays.</p>
+            <p>We only ship to the US.</p>
+            <p>If you have any questions relating to these policies or any of your questions were not answered, please email Wednesday@gmail.com.</p><br><br>
+           
+            
+            <p><strong>RETURN/SHIPPING ADDRESS</strong></p>
+            <p>Wednesday</p>
+            <p>4000 Central Florida Blvd</p>
+            <p>Orlando, FL 32816</p><br><br>
+            
+            
+      	   
+           <p><strong><a href="tax.php">Tax Policy</a></strong></p>
+           <p><strong><a href="return.php">Return and Shipping Policy</a></strong></p>
+           <p><strong><a href="privacy.php">Privacy Policy and Security Statement</a></strong></p>
+           
+		
+      </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="container" id="pay" style="visibility:hidden;">
 
    
 	<div class="row">
@@ -91,14 +160,16 @@
                     <h3 class="panel-title">
                         Shipping Information
                     </h3>
-                    <div class="checkbox pull-right">
+                  <!--  <div class="checkbox pull-right">
                         <label>
                             <input type="checkbox" />
                             Use For Billing
                         </label>
-                    </div>
+                    </div>-->
                 </div>
-                <div class="panel-body">
+               
+                <div class="panel-body1">
+                
                     <form role="form">
                 
                     <div class="row">
@@ -117,20 +188,20 @@
                             </div>
                         </div>
                     </div>
-                     
+                     <div class="col-xs-12  ">
                             <div class="form-group">
                                 <label for="firstName">
                                     Address Line 1</label>
                                 <input type="text" class="form-control" id="firstName"  required />
                             </div>
-                        
-                          
+                        </div>
+                          <div class="col-xs-12  ">
                             <div class="form-group">
                                 <label for="firstName">
                                     Address Line 2</label>
                                 <input type="text" class="form-control" id="firstName"  required />
                             </div>
-                        
+                        </div>
                     
                     
                   
@@ -169,15 +240,16 @@
                     <h3 class="panel-title">
                         Payment Details
                     </h3>
-                    <div class="checkbox pull-right">
+                <!--    <div class="checkbox pull-right">
                         <label>
                             <input type="checkbox" />
                             Remember
                         </label>
-                    </div>
+                    </div>-->
                 </div>
-                <div class="panel-body">
+                <div class="panel-body1">
                     <form role="form">
+                    <div class="col-xs-12  ">
                     <div class="form-group">
                         <label for="cardNumber">
                             CARD NUMBER</label>
@@ -186,6 +258,7 @@
                                 required autofocus />
                             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                         </div>
+                    </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-7 col-md-7">
@@ -207,15 +280,16 @@
                             </div>
                         </div>
                     </div>
+                    <br>
+                    <br>
+                    <br>
+                    
                     </form>
                 </div>
             </div>
-            <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#"><span class="badge pull-right"><span class="glyphicon glyphicon-usd"></span>4200</span> Final Payment</a>
-                </li>
-            </ul>
+          
             <br/>
-            <a href="confirm.php" class="btn btn-success btn-lg btn-block" role="button">Pay</a>
+            <a href="confirm.php" class="btn btn-success btn-lg btn-block" role="button" style="color:white;">Pay</a>
         </div>
     </div>
 
@@ -230,6 +304,7 @@
                 <div class="col-lg-6">
                     <p>This site is not official and is an assignment for a UCF Digital Media course</p>
                     <p>designed by Wednesday</p>
+                    
                 </div>
                 <div class="col-lg-3">
                 	<p><strong>Contact</strong></p>
@@ -248,6 +323,13 @@
         </div>
         <!-- /.container -->
     </footer>
+    
+    <script>
+	function showPay() {
+		document.getElementById("pay").style.visibility = "visible";
+	}
+	
+	</script>
 		
     <!-- jQuery -->
     <script src="js/jquery.js"></script>

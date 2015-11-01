@@ -1,11 +1,12 @@
 <?php
+/*$req = $_POST['search'];*/
 $con = mysql_connect("sulley.cah.ucf.edu","ka578143","DancinG#93");
 if (!$con) {
 	die("Can not Connect: " . mysql_error());
 }
+
+
 mysql_select_db("ka578143",$con);
-
-
 if (isset($_POST['womenShirts'])){
     $sql = 'SELECT * FROM wednesday WHERE gender="women" AND category="shirt"';
 } else if (isset($_POST['womenBottoms'])){
@@ -23,6 +24,18 @@ if (isset($_POST['womenShirts'])){
 }
 
 $myData = mysql_query($sql,$con);
+
+
+
+/*mysql_select_db("ka578143",$con);
+if(isset($_POST[$req == ''])) {
+$sql = 'SELECT * FROM wednesday';
+} else {
+	$sql = 'SELECT * FROM wednesday WHERE category LIKE "%'.$req.'%" OR productName LIKE "%'.$req.'%"';
+}
+echo("<!-- ".$sql."-->");
+$myData = mysql_query($sql,$con);*/
+
 ?>
 
 
@@ -66,7 +79,7 @@ $myData = mysql_query($sql,$con);
 </head>
 
 <body>
-
+<?php include_once("analyticstracking.php") ?>
   <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -104,7 +117,7 @@ $myData = mysql_query($sql,$con);
                         <a href="menscatalog.php">Men</a>
                     </li>
                     <li>
-                        <a href="#">About</a>
+                        <a href="about.php">About</a>
                     </li>
                     <li>
                         <a href="client.php">Sign In</a>
@@ -113,9 +126,9 @@ $myData = mysql_query($sql,$con);
                          <a href="cart.php"><img src="img/shoppingbag.png" alt=""></a>
                     </li>
                 </ul>
-               <form class="navbar-form" role="search">
+               <form class="navbar-form" role="search" action="womenscatalog.php" enctype="multipart/form-data" method="POST">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search" name="q">
+                    <input type="text" class="form-control" placeholder="Search" name="search">
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                     </div>
@@ -212,7 +225,7 @@ $myData = mysql_query($sql,$con);
             <div class="row">
                 <div class="col-lg-6">
                     <p>This site is not official and is an assignment for a UCF Digital Media course</p>
-                    <p>designed by Alyssa Gagnon</p>
+                    <p>designed by Wednesday</p>
                    
                  <!--   <button type="button" class="btn btn-success pull-left">
                             <a href="admin.php" style="color:white;">Admin </a><span class="glyphicon glyphicon-user"></span>

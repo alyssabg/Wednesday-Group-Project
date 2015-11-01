@@ -2,7 +2,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Wednesday Payment</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Wednesday Cart</title>
 
 <style>
 @import url('css/bootstrap.css');
@@ -22,7 +25,10 @@
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
-           <!-- <div class="navbar-header">-->
+           <div class="navbar-header">
+           		<div class="mobilelogo">
+            		<a href="home.php"><img src="img/wednesday_logo1.png" alt=""></a>
+            	</div>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -30,10 +36,12 @@
                     <span class="icon-bar"></span>
                 </button>
                 
-               <!-- <a class="navbar-brand" href="#">Start Bootstrap</a>
-            </div>-->
+               <!-- <a class="navbar-brand" href="#">Start Bootstrap</a>-->
+            </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="logo">
             <div class="col-lg-4"><a href="home.php"><img src="img/wednesday_logo1.png" alt="Wednesday"></a></div>
+            </div>
             <div class="col-lg-8">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             
@@ -43,10 +51,10 @@
                         	
                     </li>
                     <li>
-                        <a href="womenscatalog.php">Women</a>
+                        <a href="catalog.php">Women</a>
                     </li>
                     <li>
-                        <a href="menscatalog.php">Men</a>
+                        <a href="catalog.php">Men</a>
                     </li>
                     <li>
                         <a href="about.php">About</a>
@@ -67,8 +75,8 @@
                 </div>
             </form>
            
-           <!-- <a href="#"><img src="img/shoppingbag.png"></a>-->
-            </div>
+          
+            	</div>
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -82,6 +90,48 @@
 
 
 <div class="container">
+    <div class="row">
+         <div class="col-md-6">
+          
+          <img class="img-responsive img-center" src="img/mean.jpg" alt="mean">
+         
+      </div>
+        
+      <div class="col-md-6">
+      
+      	  <h1>About Wednesday</h1>
+            
+          	<p>Wedenesday is an online store started up on August 2015 in Orlando, Fl.</p>
+            <p>Our store is inspired by the very popular movie <i>Mean Girls</i>. Everything in our store is pink, this comes from the quote "On Wednesday we wear pink!" spoken by Karen, one of the plastics in the movie.</p>
+            <p>We offer both men and women clothing, shoes, purses, and wallets and we keep up with all the latest trends in the fashion world.</p>
+            <p>It is our goal to make sure everyones visit to Wednesday.com is a fun and easy experience, so that customers will want to visit our site again and again in the future.</p><br>
+            
+            <p><strong>Our Team</strong></p>
+            <p>Emily Frazin</p>
+            <p>Alyssa Gagnon</p>
+            <p>Logan Lavigne</p>
+            <p>Kaitlyn Lunceford</p>
+            <p>Barbara Payne</p>
+            <p>Stephanie Quirindongo</p><br>
+            
+            <p>View our policies by clicking on the links below:</p>
+            <p><strong><a href="tax.php">Tax Policy</a></strong></p>
+        	<p><strong><a href="return.php">Return and Shipping Policy</a></strong></p>
+    		<p><strong><a href="privacy.php">Privacy Policy and Security Statement</a></strong></p>
+
+      </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="container" id="pay" style="visibility:hidden;">
 
    
 	<div class="row">
@@ -91,14 +141,16 @@
                     <h3 class="panel-title">
                         Shipping Information
                     </h3>
-                    <div class="checkbox pull-right">
+                  <!--  <div class="checkbox pull-right">
                         <label>
                             <input type="checkbox" />
                             Use For Billing
                         </label>
-                    </div>
+                    </div>-->
                 </div>
-                <div class="panel-body">
+               
+                <div class="panel-body1">
+                
                     <form role="form">
                 
                     <div class="row">
@@ -117,20 +169,20 @@
                             </div>
                         </div>
                     </div>
-                     
+                     <div class="col-xs-12  ">
                             <div class="form-group">
                                 <label for="firstName">
                                     Address Line 1</label>
                                 <input type="text" class="form-control" id="firstName"  required />
                             </div>
-                        
-                          
+                        </div>
+                          <div class="col-xs-12  ">
                             <div class="form-group">
                                 <label for="firstName">
                                     Address Line 2</label>
                                 <input type="text" class="form-control" id="firstName"  required />
                             </div>
-                        
+                        </div>
                     
                     
                   
@@ -169,15 +221,16 @@
                     <h3 class="panel-title">
                         Payment Details
                     </h3>
-                    <div class="checkbox pull-right">
+                <!--    <div class="checkbox pull-right">
                         <label>
                             <input type="checkbox" />
                             Remember
                         </label>
-                    </div>
+                    </div>-->
                 </div>
-                <div class="panel-body">
+                <div class="panel-body1">
                     <form role="form">
+                    <div class="col-xs-12  ">
                     <div class="form-group">
                         <label for="cardNumber">
                             CARD NUMBER</label>
@@ -186,6 +239,7 @@
                                 required autofocus />
                             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                         </div>
+                    </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-7 col-md-7">
@@ -207,15 +261,16 @@
                             </div>
                         </div>
                     </div>
+                    <br>
+                    <br>
+                    <br>
+                    
                     </form>
                 </div>
             </div>
-            <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#"><span class="badge pull-right"><span class="glyphicon glyphicon-usd"></span>4200</span> Final Payment</a>
-                </li>
-            </ul>
+          
             <br/>
-            <a href="confirm.php" class="btn btn-success btn-lg btn-block" role="button">Pay</a>
+            <a href="confirm.php" class="btn btn-success btn-lg btn-block" role="button" style="color:white;">Pay</a>
         </div>
     </div>
 
@@ -230,6 +285,7 @@
                 <div class="col-lg-6">
                     <p>This site is not official and is an assignment for a UCF Digital Media course</p>
                     <p>designed by Wednesday</p>
+                    
                 </div>
                 <div class="col-lg-3">
                 	<p><strong>Contact</strong></p>
@@ -248,6 +304,13 @@
         </div>
         <!-- /.container -->
     </footer>
+    
+    <script>
+	function showPay() {
+		document.getElementById("pay").style.visibility = "visible";
+	}
+	
+	</script>
 		
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
