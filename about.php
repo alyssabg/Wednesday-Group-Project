@@ -51,10 +51,10 @@
                         	
                     </li>
                     <li>
-                        <a href="catalog.php">Women</a>
+                        <a href="womenscatalog.php">Women</a>
                     </li>
                     <li>
-                        <a href="catalog.php">Men</a>
+                        <a href="menscatalog.php">Men</a>
                     </li>
                     <li>
                         <a href="about.php">About</a>
