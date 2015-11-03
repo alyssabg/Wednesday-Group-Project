@@ -8,6 +8,7 @@ mysql_select_db("ka578143",$con);
 $id = $_GET['id'];
 
 $sql = "SELECT * FROM wednesday WHERE productID = $id";
+$prodCat = $row['category'];
 $myData = mysql_query($sql,$con);
 ?>
 
@@ -38,7 +39,8 @@ $myData = mysql_query($sql,$con);
 </head>
 
 <body>
-<?php include_once("analyticstracking.php") ?>
+    <?php include_once("analyticstracking.php") ?>
+
   <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -74,7 +76,7 @@ $myData = mysql_query($sql,$con);
                         <a href="menscatalog.php">Men</a>
                     </li>
                     <li>
-                        <a href="about.php">About</a>
+                        <a href="#">About</a>
                     </li>
                     <li>
                         <a href="client.php">Sign In</a>
@@ -150,6 +152,57 @@ $myData = mysql_query($sql,$con);
 				</div>
 				</div>
 				'?>
+
+
+
+                <div class="container">
+                    <h1 style="text-align:center;">Recommendations</h1>
+                    <?php
+                        $con = mysql_connect("sulley.cah.ucf.edu","ka578143","DancinG#93");
+                        if (!$con) {
+                            die("Can not Connect: " . mysql_error());
+                        }
+                        mysql_select_db("ka578143",$con);
+
+                        $id = $_GET['id'];
+
+                        $sql = "SELECT * FROM wednesday WHERE productID= 759 || productID=174 || productID=332";
+                     
+                              $myData = mysql_query($sql,$con);
+                        ?>
+
+
+                    
+                    <?php
+                    while ($row = mysql_fetch_array($myData))  
+                    echo'
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <a href="product_details.php?id='.$row['productID'].'"><img src="'.$row['productThumb'].'" alt="'.$row['productThumb'].'"></a>
+                            <div class="caption">
+                                <h2 class="pull-right" style="color:#d824c9;">'.$row['price'].'</h2>
+                                <h2><a href="product_details.php?id='.$row['productID'].'">'.$row['productName'].'</a>
+                                </h2>
+                              <p>'.$row['description'].'</p>
+                            </div>
+                           <div class="ratings">
+                                <p class="pull-right">15 reviews</p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    '
+                    ?>
+
+
+                </div>
+
                 <div class="well">
 
                     <div class="text-right">
@@ -345,7 +398,6 @@ $myData = mysql_query($sql,$con);
             </div>
 
         </div>
-
     </div>
     <!-- /.container -->
 
