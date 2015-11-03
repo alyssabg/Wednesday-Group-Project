@@ -190,33 +190,6 @@ $myData = mysql_query($sql,$con);
                     '
                     ?>
 
-            <!--<h1 style="text-align:center;">Like, Mean Deals</h1>
-            <div class="col-md-4">
-                <div class="thumbnail">
-                    <a href="product/coat.php">
-                        <img src="img/items/coat.jpg" alt="Pink Queen">
-                    </a>
-                    <h2 style="text-align:center;">Pink Queen</h2>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="thumbnail">
-                    <a href="product/furvest.php">
-                        <img src="img/items/furvest.jpg" alt="Pretty Pastel">
-                    </a>
-                    <h2 style="text-align:center;">Pretty Pastel</h2>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="thumbnail">
-                    <a href="product/halter.php">
-                        <img src="img/items/halter.jpg" alt="Little Bow">
-                    </a>
-                    <h2 style="text-align:center;">Little Bow</h2>
-                </div>
-            </div>
-        </div>-->
-
     </section>
 
    
