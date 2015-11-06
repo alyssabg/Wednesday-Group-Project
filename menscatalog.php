@@ -1,13 +1,24 @@
 <?php
-
-
-//$req = $_POST['q'.session_name()];
+error_reporting(0);
+$req = $_POST['search'];
 $con = mysql_connect("sulley.cah.ucf.edu","ka578143","DancinG#93");
 if (!$con) {
     die("Can not Connect: " . mysql_error());
 }
-mysql_select_db("ka578143",$con);
+$req = mysql_escape_string($req);
 
+mysql_select_db("ka578143",$con);
+if($req == "") {
+$sql = 'SELECT * FROM wednesday ';
+} else {
+	$sql = 'SELECT * FROM wednesday WHERE gender="men" AND (category LIKE "%'.$req.'%" OR productName LIKE "%'.$req.'%")';
+}
+echo("<!-- ".$sql."-->");
+$searchData = mysql_query($sql);
+
+
+mysql_select_db("ka578143",$con);
+if (isset($_POST['menShirts'])){ $_POST['menShirts'] = mysql_escape_string($_POST['menShirts']); }
 if(isset($_POST['menShirts'])){
     $sql = 'SELECT * FROM wednesday WHERE gender="men" AND category="shirt"';
 } else if (isset($_POST['menBottoms'])){
@@ -20,6 +31,10 @@ if(isset($_POST['menShirts'])){
 
 echo("<!-- ".$sql."-->");
 $myData = mysql_query($sql,$con);
+
+$searchthing = "";
+
+if ($req == "") {$searchthing = $myData; } else { $searchthing = $searchData; };
  
 ?>
 
@@ -111,7 +126,7 @@ $myData = mysql_query($sql,$con);
                          <a href="cart.php"><img src="img/shoppingbag.png" alt=""></a>
                     </li>
                 </ul>
-                 <form class="navbar-form" role="search" action="womenscatalog.php" enctype="multipart/form-data" method="POST">
+                 <form class="navbar-form" role="search" action="menscatalog.php" enctype="multipart/form-data" method="POST">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search" name="search">
                     <div class="input-group-btn">
@@ -155,7 +170,7 @@ $myData = mysql_query($sql,$con);
 
 
                      <?php
-                    while ($row = mysql_fetch_array($myData))  
+                    while ($row = mysql_fetch_array($searchthing))  
                     echo'
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">

@@ -1,40 +1,22 @@
-<?php
-/*$req = $_POST['search'];*/
+    <?php
+error_reporting(0);
+$req = $_POST['search'];
 $con = mysql_connect("sulley.cah.ucf.edu","ka578143","DancinG#93");
 if (!$con) {
 	die("Can not Connect: " . mysql_error());
 }
+$req = mysql_escape_string($req);
 
+//echo($req);
 
 mysql_select_db("ka578143",$con);
-if (isset($_POST['womenShirts'])){
-    $sql = 'SELECT * FROM wednesday WHERE gender="women" AND category="shirt"';
-} else if (isset($_POST['womenBottoms'])){
-    $sql = 'SELECT * FROM wednesday WHERE gender="women" AND category="bottoms"';
-} else if (isset($_POST['womenDresses'])){
-    $sql = 'SELECT * FROM wednesday WHERE gender="women" AND category="dress"';
-} else if (isset($_POST['womenJackets'])){
-    $sql = 'SELECT * FROM wednesday WHERE gender="women" AND category="jacket"';
-} else if (isset($_POST['womenShoes'])){
-    $sql = 'SELECT * FROM wednesday WHERE gender="women" AND category="shoes"';
-} else if (isset($_POST['womenAccessories'])){
-    $sql = 'SELECT * FROM wednesday WHERE gender="women" AND category="accessories"';
-} else {
-    $sql = 'SELECT * FROM wednesday where gender="women"';
-}
-
-$myData = mysql_query($sql,$con);
-
-
-
-/*mysql_select_db("ka578143",$con);
-if(isset($_POST[$req == ''])) {
+if($req == "") {
 $sql = 'SELECT * FROM wednesday';
 } else {
-	$sql = 'SELECT * FROM wednesday WHERE category LIKE "%'.$req.'%" OR productName LIKE "%'.$req.'%"';
+	$sql = 'SELECT * FROM wednesday WHERE gender="women" AND ( category LIKE "%'.$req.'%" OR productName LIKE "%'.$req.'%")';
 }
 echo("<!-- ".$sql."-->");
-$myData = mysql_query($sql,$con);*/
+$searchData = mysql_query($sql);
 
 ?>
 
@@ -134,7 +116,8 @@ $myData = mysql_query($sql,$con);*/
                     </div>
                 </div>
             </form>
-           
+              
+
            <!-- <a href="#"><img src="img/shoppingbag.png"></a>-->
             </div>
             </div>
@@ -143,6 +126,39 @@ $myData = mysql_query($sql,$con);*/
         <!-- /.container -->
     </nav>
     <!-- Page Content -->
+    
+    <?php
+
+//$con = mysql_connect("sulley.cah.ucf.edu","ka578143","DancinG#93");
+if (!$con) {
+	die("Can not Connect: " . mysql_error());
+}
+
+
+mysql_select_db("ka578143",$con);
+if (isset($_POST['womenShirts'])){ $_POST['womenShirts'] = mysql_escape_string($_POST['womenShirts']); }
+if (isset($_POST['womenShirts'])){
+    $sql = 'SELECT * FROM wednesday WHERE gender="women" AND category="shirt"';
+} else if (isset($_POST['womenBottoms'])){
+    $sql = 'SELECT * FROM wednesday WHERE gender="women" AND category="bottoms"';
+} else if (isset($_POST['womenDresses'])){
+    $sql = 'SELECT * FROM wednesday WHERE gender="women" AND category="dress"';
+} else if (isset($_POST['womenJackets'])){
+    $sql = 'SELECT * FROM wednesday WHERE gender="women" AND category="jacket"';
+} else if (isset($_POST['womenShoes'])){
+    $sql = 'SELECT * FROM wednesday WHERE gender="women" AND category="shoes"';
+} else if (isset($_POST['womenAccessories'])){
+    $sql = 'SELECT * FROM wednesday WHERE gender="women" AND category="accessories"';
+} else {
+    $sql = 'SELECT * FROM wednesday WHERE gender="women"';
+}
+
+$myData = mysql_query($sql); 
+//set a blank array
+$searchthing = "";
+
+if ($req == "") {$searchthing = $myData; } else { $searchthing = $searchData; };
+?>
     <div class="container">
 
         <div class="row">
@@ -173,7 +189,9 @@ $myData = mysql_query($sql,$con);*/
 
 
 					 <?php
-                    while ($row = mysql_fetch_array($myData))  
+					 
+					 
+                  while($row = mysql_fetch_array($searchthing))  
                     echo'
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
@@ -201,7 +219,7 @@ $myData = mysql_query($sql,$con);*/
                     </div>
                     '
                     ?>
-
+					
 
 
                

@@ -58,9 +58,9 @@
                          <a href="cart.php"><img src="img/shoppingbag.png"></a>
                     </li>
                 </ul>
-               <form class="navbar-form" role="search">
+                     <form class="navbar-form" role="search" action="womenscatalog.php" enctype="multipart/form-data" method="POST">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search" name="q">
+                    <input type="text" class="form-control" placeholder="Search" name="search">
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                     </div>
