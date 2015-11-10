@@ -220,7 +220,7 @@ if($access != 3){
 
                                 <div class="form-group col-md-4">
                                     <label>Product ID</label>
-                                    <input name='product_id' type="text" class="form-control" onFocus="if(this.value == 'Product ID') this.value = ''" onBlur="if(this.value == '') this.value = 'Product ID'" value="Product ID" required="required">
+                                    <input name='product_id' type="tel" class="form-control" onFocus="if(this.value == 'Product ID') this.value = ''" onBlur="if(this.value == '') this.value = 'Product ID'" value="Product ID" required="required">
                                 </div>
 
                                 <div class="form-group col-md-4">
