@@ -107,12 +107,12 @@
             <p>It is our goal to make sure everyones visit to Wednesday.com is a fun and easy experience, so that customers will want to visit our site again and again in the future.</p><br>
             
             <p><strong>Our Team</strong></p>
-            <p>Emily Frazin</p>
-            <p>Alyssa Gagnon</p>
-            <p>Logan Lavigne</p>
-            <p>Kaitlyn Lunceford</p>
-            <p>Barbara Payne</p>
-            <p>Stephanie Quirindongo</p><br>
+            <p>Emily Frazin - Company Policies, Site Proofing, Payment System</p>
+            <p>Alyssa Gagnon - Search Function, Website Look, Mobile Functionality, Product Ratings, Analytics</p>
+            <p>Logan Lavigne - User Accounts, Admin Accounts</p>
+            <p>Kaitlyn Lunceford - Product Database, Order Database</p>
+            <p>Barbara Payne - Customer Reviews, Shopping Cart</p>
+            <p>Stephanie Quirindongo - Case Studies, Payment System</p><br>
             
             <p>View our policies by clicking on the links below:</p>
             <p><strong><a href="tax.php">Tax Policy</a></strong></p>
