@@ -1,14 +1,20 @@
 <?php
-$con = mysql_connect("sulley.cah.ucf.edu","ka578143","DancinG#93");
-if (!$con) {
-	die("Can not Connect: " . mysql_error());
+session_start();
+require('includes/con_wed.php');
+$email = $_SESSION['email'];
+$password = $_SESSION['password'];
+
+$query = "SELECT * FROM users WHERE UserEmail='$email' and UserPassword='$password'";
+
+$result = mysql_query($query) or die(mysql_error());
+$count = mysql_num_rows($result);
+$row = mysql_fetch_assoc($result); 
+
+if($count != 1){
+    header("Location: login.php");
+    
 }
-mysql_select_db("ka578143",$con);
-
-$sql = 'SELECT * FROM wednesday where productID=659';
-$myData = mysql_query($sql,$con);
 ?>
-
 
 
 <!doctype html>
@@ -17,7 +23,7 @@ $myData = mysql_query($sql,$con);
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
 
 <title>Wednesday Client</title>
 
@@ -28,6 +34,11 @@ $myData = mysql_query($sql,$con);
 @import url('css/shop-homepage.css');
 @import url('css/styles.css');
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+.wed_color {
+    color: #d824c9;
+}
+
 </style>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -74,16 +85,16 @@ $myData = mysql_query($sql,$con);
                         <a href="about.php">About</a>
                     </li>
                     <li>
-                        <a href="client.php">Sign In</a>
+                        <a href="logout.php">Sign Out</a>
                     </li>
                   
                  <li>
                          <a href="cart.php"><img src="img/shoppingbag.png" alt=""></a>
                     </li>
                 </ul>
-                         <form class="navbar-form" role="search" action="womenscatalog.php" enctype="multipart/form-data" method="POST">
+               <form class="navbar-form" role="search">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search" name="search">
+                    <input type="text" class="form-control" placeholder="Search" name="q">
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                     </div>
@@ -98,126 +109,240 @@ $myData = mysql_query($sql,$con);
         <!-- /.container -->
     </nav>
     
-    <section>
+    <section style="padding-top: 15px;">
     <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                	<h1 class="section-heading">Your Account</h1>
-                     <div class="panel panel-info" >
-            			<div class="panel-heading">
-              				<h3 class="panel-title">User Name</h3>
-            			</div>
-            			<div class="panel-body2">
-              				<div class="row">
-                            	<div class=" col-md-12  "> 
-                  					<div class="table table-user-information" >
-                   
-                      <div class="row">
-                      	<div class="col-md-6">
-                        	<h4><strong>Name:</strong></h4>
+        
+        <h2><span class="wed_color">Welcome</span> <i><?php echo $row['UserFirstName'];?> <?php echo $row['UserLastName'];?></i></h2>
+        
+        <br />
+
+        <div class="row" style="margin-bottom: 10px;">
+            <ul class="nav nav-tabs" style="padding: 20px;">
+                <li><a data-toggle="tab" href="#recent"><span class="wed_color">Recent Orders</span></a></li>
+                <li><a data-toggle="tab" href="#profile"><span class="wed_color">Profile</span></a></li>
+                <li><a data-toggle="tab" href="#billing"><span class="wed_color">Billing Information</span></a></li>
+                <li><a data-toggle="tab" href="#shipping"><span class="wed_color">Shipping Information</span></a></li>
+            </ul>
+
+            <div class="tab-content" style="margin-top: -50px;">
+                <div id="recent" class="tab-pane fade">
+                    <section class="container" style="padding-bottom: 5px;">
+                         <div class="container-page">                
+                            <div class="col-md-6">
+                                <h3 class="dark-grey"><span class="wed_color">Recent Orders</span></h3>
+                                <p> You have no recent orders to display </p>
+                                <!-- start php
+                                    query SELECT * FROM Orders WHERE UserID=$UserID;
+
+                                    echo those orders
+                                -->
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                        	<h4>Jane Smith</h4>
-                        </div>
-                      </div>
-                      <div class="row">
-                      	<div class="col-md-6">
-                        	<h4><strong>Billing Address:</strong></h4>
-                        </div>
-                        <div class="col-md-6">
-                        	<h4>246 Over There Place</h4>
-                        </div>
-                      </div>
-                       <div class="row">
-                      	<div class="col-md-6">
-                        	<h4><strong>City, State, Zip:</strong></h4>
-                        </div>
-                        <div class="col-md-6">
-                        	<h4>Orlando, FL, 32828</h4>
-                        </div>
-                      </div>
-                       <div class="row">
-                      	<div class="col-md-6">
-                        	<h4><strong>Email:</strong></h4>
-                        </div>
-                        <div class="col-md-6">
-                        	<h4>jane.smith@gmail.com</h4>
-                        </div>
-                      </div>
-                        <div class="row">
-                      	<div class="col-md-6">
-                        	<h4><strong>Phone:</strong></h4>
-                        </div>
-                        <div class="col-md-6">
-                        	<h4>(407) 321 - 5678</h4>
-                        </div>
-                      </div>
-                       <div class="row">
-                      	<div class="col-md-6">
-                        	<h4><strong>Card:</strong></h4>
-                        </div>
-                        <div class="col-md-6">
-                        	<h4>XXXX-XXXX-XXXX-1234</h4>
-                        </div>
-                      </div>
-                       <div class="row">
-                      	<div class="col-md-6">
-                        	<h4><strong>Expires:</strong></h4>
-                        </div>
-                        <div class="col-md-6">
-                        	<h4>09/18</h4>
-                        </div>
-                      </div>
-                      
-                     
-                    <span class="pull-right" style=" margin-top: 280px; margin-bottom:20px; margin-right:20px;">
-                            <a href="#" style="color:white;" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i></a>
-                         
-                        </span>
-                  	</div>
-                  </div>
-            	</div>
-            </div>
-             
-            
-          </div>
+                    </section>
                 </div>
-                 <div class="col-md-4">
-                  <h1 class="section-heading">Sale</h1>
-                     <?php
-                    while ($row = mysql_fetch_array($myData))  
-                    echo'
-                    <div class="col-md-12">
-                        <div class="thumbnail">
-                            <a href="product_details.php?id='.$row['productID'].'"><img src="'.$row['productThumb'].'" alt="'.$row['productName'].'"></a>
-                            <div class="caption">
-                                <h2 class="pull-right" style="color:#d824c9;">'.$row['price'].'</h2>
-                                <h2><a href="product_details.php?id='.$row['productID'].'">'.$row['productName'].'</a>
-                                </h2>
-                              <p>'.$row['description'].'</p>
-                            </div>
-                           <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
+                <div id="profile" class="tab-pane fade">
+                    <section class="container">
+                         <div class="container-page">                
+                            <div class="col-md-6">
+                                <h3 class="dark-grey"><span class="wed_color">Profile Overview</span></h3>
                                 <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
+                                    First Name: <?php echo $row['UserFirstName'];?>
                                 </p>
+
+                                <p>
+                                    Last Name: <?php echo $row['UserLastName'];?>
+                                </p>
+
+                                <p>
+                                    Email: <?php echo $row['UserEmail'];?>
+                                </p>
+
+                                <p>
+                                    Password:</span> Your password is hidden for security.
+                                </p>
+
+                                <p>
+                                    Address Line 1: <?php echo $row['UserAddress'];?>
+                                </p>
+
+                                <p>
+                                    Address Line 2: <?php echo $row['UserAddress2'];?>
+                                </p>
+
+                                <p>
+                                    City: <?php echo $row['UserCity'];?>
+                                </p>
+
+                                <p>
+                                    State: <?php echo $row['UserState'];?>
+                                </p>
+
+                                <p>
+                                    Zip: <?php echo $row['UserZip'];?>
+                                </p>
+
+                                <p>
+                                    Phone: <?php echo $row['UserPhone'];?>
+                                </p>
+                                <br />
+                                <a href="php/edit_profile.php" style="padding-left:0px;"><input type="submit" style="background-color: #d824c9;" value="Update Profile" class="btn btn-primary" id="submit"/></a>
+
+                            </div>
+        
+                            <div class="col-md-6">
+                                <h3 class="dark-grey"><span class="wed_color">Terms and Conditions</span></h3>
+                                <p>
+                                    By clicking on "Update" you agree to The Company's' Terms and Conditions
+                                </p>
+                                <p>
+                                    While rare, prices are subject to change based on exchange rate fluctuations - 
+                                    should such a fluctuation happen, we may request an additional payment. You have the option to request a full refund or to pay the new price. (Paragraph 13.5.8)
+                                </p>
+                                <p>
+                                    Should there be an error in the description or pricing of a product, we will provide you with a full refund (Paragraph 13.5.6)
+                                </p>
+                                <p>
+                                    Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)
+                                </p>
+                
                             </div>
                         </div>
-                    </div>
-                    '
-                    ?>
+                    </section>
+                </div>
+
+                    <div id="billing" class="tab-pane fade">
+                    <section class="container">
+                         <div class="container-page">                
+                            <div class="col-md-6">
+                                <h3 class="dark-grey"><span class="wed_color">Billing Information</span></h3>
+                                <p>
+                                    First Name: <?php echo $row['UserFirstBill'];?>
+                                </p>
+
+                                <p>
+                                    Last Name: <?php echo $row['UserLastBill'];?>
+                                </p>
+
+                                <p>
+                                    Credit Card: <?php echo $row['UserCreditCard'];?>
+                                </p>
+
+                                <p>
+                                    CCV: <?php echo $row['UserCCV'];?>
+                                </p>
+
+                                <p>
+                                    Address Line 1: <?php echo $row['UserAddressBill'];?>
+                                </p>
+
+                                <p>
+                                    Address Line 2: <?php echo $row['UserAddress2Bill'];?>
+                                </p>
+
+                                <p>
+                                    City: <?php echo $row['UserCityBill'];?>
+                                </p>
+
+                                <p>
+                                    State: <?php echo $row['UserStateBill'];?>
+                                </p>
+
+                                <p>
+                                    Zip: <?php echo $row['UserZipBill'];?>
+                                </p>
+                                <br />
+                                <a href="php/edit_profile.php" style="padding-left:0px;"><input type="submit" style="background-color: #d824c9;" value="Update Billing" class="btn btn-primary" id="submit"/></a>
+
+                            </div>
+        
+                            <div class="col-md-6">
+                                <h3 class="dark-grey"><span class="wed_color">Terms and Conditions</span></h3>
+                                <p>
+                                    By clicking on "Update" you agree to The Company's' Terms and Conditions
+                                </p>
+                                <p>
+                                    While rare, prices are subject to change based on exchange rate fluctuations - 
+                                    should such a fluctuation happen, we may request an additional payment. You have the option to request a full refund or to pay the new price. (Paragraph 13.5.8)
+                                </p>
+                                <p>
+                                    Should there be an error in the description or pricing of a product, we will provide you with a full refund (Paragraph 13.5.6)
+                                </p>
+                                <p>
+                                    Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)
+                                </p>
+                
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+
+
+                    <div id="shipping" class="tab-pane fade">
+                    <section class="container">
+                         <div class="container-page">                
+                            <div class="col-md-6">
+                                <h3 class="dark-grey"><span class="wed_color">Shipping Information</span></h3>
+                                <p>
+                                    First Name: <?php echo $row['UserFirstNameShip'];?>
+                                </p>
+
+                                <p>
+                                    Last Name: <?php echo $row['UserLastNameShip'];?>
+                                </p>
+
+
+                                <p>
+                                    Address: <?php echo $row['UserAddressShip'];?>
+                                </p>
+
+                                <p>
+                                    Address Line 2: <?php echo $row['UserAddress2Ship'];?>
+                                </p>
+
+                                <p>
+                                    City: <?php echo $row['UserCityShip'];?>
+                                </p>
+
+                                <p>
+                                    State: <?php echo $row['UserStateShip'];?>
+                                </p>
+
+                                <p>
+                                    Zip: <?php echo $row['UserZipShip'];?>
+                                </p>
+                                <br />
+
+                                <a href="php/edit_profile.php" style="padding-left:0px;"><input type="submit" style="background-color: #d824c9;" value="Update Shipping" class="btn btn-primary" id="submit"/></a>
+
+                            </div>
+        
+                            <div class="col-md-6">
+                                <h3 class="dark-grey"><span class="wed_color">Terms and Conditions</span></h3>
+                                <p>
+                                    By clicking on "Update" you agree to The Company's' Terms and Conditions
+                                </p>
+                                <p>
+                                    While rare, prices are subject to change based on exchange rate fluctuations - 
+                                    should such a fluctuation happen, we may request an additional payment. You have the option to request a full refund or to pay the new price. (Paragraph 13.5.8)
+                                </p>
+                                <p>
+                                    Should there be an error in the description or pricing of a product, we will provide you with a full refund (Paragraph 13.5.6)
+                                </p>
+                                <p>
+                                    Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)
+                                </p>
+                
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>
-    
-    
-    
-    </section>
-    
+        <!-- /.row -->
+        <br />
+        <br />
+        <hr>
     
     
   <!-- Footer -->
@@ -246,11 +371,7 @@ $myData = mysql_query($sql,$con);
         </div>
         <!-- /.container -->
     </footer>
-	
-    
-        <?php
-mysql_close($con);
-?>
+
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 

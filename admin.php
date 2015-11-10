@@ -1,14 +1,33 @@
 <?php
-$con = mysql_connect("sulley.cah.ucf.edu","al461752","Bentley93!");
-if (!$con) {
-die("Can not Connect: " . mysql_error());
+session_start();
+require('includes/con_wed.php');
+$email = $_SESSION['email'];
+$password = $_SESSION['password'];
+
+$query = "SELECT * FROM users WHERE UserEmail='$email' and UserPassword='$password'";
+
+$result = mysql_query($query) or die(mysql_error());
+$count = mysql_num_rows($result);
+$row = mysql_fetch_assoc($result);
+$access = $row['UserStatus'];
+
+
+$sql = "SELECT * FROM wednesday";
+$myData = mysql_query($sql) or die(mysql_error());
+//$rows = mysql_fetch_assoc($sql); 
+
+
+if($count != 1){
+    header("Location: login.php");
+    
 }
-mysql_select_db("al461752",$con);
 
-$sql = 'SELECT * FROM Products';
-$myData = mysql_query($sql,$con);
+if($access != 3){
+    header("Location: client.php");
+    
+}
+
 ?>
-
 
 <!doctype html>
 <html>
@@ -16,7 +35,7 @@ $myData = mysql_query($sql,$con);
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
 <title>Wednesday Admin</title>
 <style>
 @import url('css/bootstrap.css');
@@ -25,6 +44,11 @@ $myData = mysql_query($sql,$con);
 @import url('css/shop-homepage.css');
 @import url('css/styles.css');
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+.wed_color {
+    color: #d824c9;
+}
+
 </style>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -71,7 +95,7 @@ $myData = mysql_query($sql,$con);
                         <a href="about.php">About</a>
                     </li>
                     <li>
-                        <a href="client.php">Sign In</a>
+                        <a href="logout.php">Log Out</a>
                     </li>
                  <li>
                          <a href="cart.php"><img src="img/shoppingbag.png" alt=""></a>
@@ -96,7 +120,7 @@ $myData = mysql_query($sql,$con);
     <div class="container">
     <div class="row">
     <div class="col-md-12">
-    <h1 style="text-align:center;">Welcome Admin</h1>
+    <h2><span class="wed_color">Welcome</span> <i><?php echo $row['UserFirstName'];?> <?php echo $row['UserLastName'];?></i></h2>
     </div>
     </div>
     </div>
@@ -165,7 +189,7 @@ $myData = mysql_query($sql,$con);
 						</div>
 					</div>
 					
-					<img src="img/chart.png" class="img-responsive img-center roundcorners" alt="chart">
+					<img src="img/chart.gif" class="img-responsive img-center roundcorners" alt="chart">
 				</div>
 			</div>
 		</div>
@@ -188,93 +212,76 @@ $myData = mysql_query($sql,$con);
 					<!--<div class="panel-body">
 						<input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Filter Tasks" />
 					</div>-->
-                    <div class="row">
-                    <div class="col-md-4">
-					<div class="form-group">
-                                <label for="ProductID">
-                                    Product Id</label>
-                                <input type="text" class="form-control" id="ProductID"  required />
-                            </div>
-                           </div>
-                          
-                   
-                    <div class="col-md-4">
-                    <div class="form-group">
-                                <label for="ProductName">
-                                    Product Name</label>
-                                <input type="text" class="form-control" id="ProductName"  required />
-                            </div>
-                           </div>
-                         
-                    
-                    <div class="col-md-4">
-                    <div class="form-group">
-                                <label for="Description">
-                                    Description</label>
-                                <input type="text" class="form-control" id="Description"  required />
-                            </div>
-                         </div>
-                         </div>
-                         <div class="row">
-                    <div class="col-md-4">
-                    <div class="form-group">
-                                <label for="Category">
-                                    Category</label>
-                                <input type="text" class="form-control" id="Category"  required />
-                            </div>
-                            </div>
-                            
-                            
-                    <div class="col-md-4">
-                    <div class="form-group">
-                                <label for="SKU">
-                                    SKU</label>
-                                <input type="text" class="form-control" id="SKU"  required />
-                            </div>
-                            </div>
-                           
-                           
-                    <div class="col-md-4">
-                    <div class="form-group">
-                                <label for="Stock">
-                                    Stock</label>
-                                <input type="text" class="form-control" id="Stock"  required />
-                            </div>
-                            </div>
-                            </div>
-                            <div class="row">
-                    <div class="col-md-4">
-                    <div class="form-group">
-                                <label for="Cost">
-                                    Cost</label>
-                                <input type="text" class="form-control" id="Cost"  required />
-                            </div>
-                            </div>
-                          <div class="col-md-4">  
-                    <div class="form-group">
-                                <label for="Price">
-                                    Price</label>
-                                <input type="text" class="form-control" id="Price"  required />
-                            </div>
-                            </div>
-                            <div class="col-md-4">
-                    <div class="form-group">
-                                <label for="ImageURL">
-                                    Image URL</label>
-                                <input type="text" class="form-control" id="ImageURL"  required />
-                            </div>
-                            </div>
-                            </div>
-                       <div class="row">
-                    	<div class="col-sm-12 col-md-12 pull-right">
-                      
-                      	  <button type="button" class="btn btn-success pull-right">
-                            Submit 
-                        </button>
-                        </div>
-                        </div> 
-                        <br>
-                        <br>
+                    <div id="myForm">
+                        <form method="post" action="php/admin_add.php">
+                            <fieldset class="clearfix">
+                                
+                                <br />
+
+                                <div class="form-group col-md-4">
+                                    <label>Product ID</label>
+                                    <input name='product_id' type="text" class="form-control" onFocus="if(this.value == 'Product ID') this.value = ''" onBlur="if(this.value == '') this.value = 'Product ID'" value="Product ID" required="required">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label>Product Name</label>
+                                    <input name='product_name' type="text" class="form-control" onFocus="if(this.value == 'Product Name') this.value = ''" onBlur="if(this.value == '') this.value = 'Product Name'" value="Product Name" required="required">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label>Description</label>
+                                    <input name='description' type="text" class="form-control" onFocus="if(this.value == 'Description') this.value = ''" onBlur="if(this.value == '') this.value = 'Description'" value="Description" required="required">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label>Category</label>
+                                    <input name='category' type="text" class="form-control" onFocus="if(this.value == 'Category') this.value = ''" onBlur="if(this.value == '') this.value = 'Category'" value="Category" required="required">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label>SKU</label>
+                                    <input name='stock' type="tel" class="form-control" onFocus="if(this.value == 'SKU') this.value = ''" onBlur="if(this.value == '') this.value = 'SKU'" value="SKU" required="required">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label>Stock</label>
+                                    <input name='sku' type="tel" class="form-control" onFocus="if(this.value == 'Stock') this.value = ''" onBlur="if(this.value == '') this.value = 'Stock'" value="Stock" required="required">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label>Cost</label>
+                                    <input name='cost' type="tel" class="form-control" onFocus="if(this.value == 'Cost') this.value = ''" onBlur="if(this.value == '') this.value = 'Cost'" value="Cost" required="required">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label>Price</label>
+                                    <input name='price' type="tel" class="form-control" onFocus="if(this.value == 'Price') this.value = ''" onBlur="if(this.value == '') this.value = 'Price'" value="Price" required="required">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label>Product Weight</label>
+                                    <input name='weight' type="tel" class="form-control" onFocus="if(this.value == 'Product Weight') this.value = ''" onBlur="if(this.value == '') this.value = 'Product Weight'" value="Product Weight" required="required">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label>Image Thumbnail</label>
+                                    <input name='img_thumb' type="text" class="form-control" onFocus="if(this.value == 'Image Thumbnail URL') this.value = 'img/items/thumbs/'" onBlur="if(this.value == 'img/items/thumbs/') this.value = 'Image Thumbnail URL'" value="Image Thumbnail URL" required="required">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label>Image URL</label>
+                                    <input name='img_url' type="text" class="form-control" onFocus="if(this.value == 'Image URL') this.value = 'img/items/'" onBlur="if(this.value == 'img/items/') this.value = 'Image URL'" value="Image URL" required="required">
+                                </div>
+
+                                <div class="col-md-12 pull-right" style="padding-bottom: 10px;">
+                                    <input type="submit" style="background-color: #d824c9" value="Add Product" class="btn btn-primary pull-right" id="submit"/>
+                                </div>
+
+                                <br />
+
+                            </fieldset>
+                        </form>
+                    </div>
 				</div>
 			</div>
 		</div>
@@ -313,22 +320,26 @@ $myData = mysql_query($sql,$con);
                                 <th>Stock</th>
                                 <th>Cost</th>
                                 <th>Price</th>
+                                <th>Weight</th>
                                 <th>Image URL</th>
+                                <th>Image Thumbnail</th>
 							</tr>
 						</thead>
 						<tbody>
                         <?php
-							while($row = mysql_fetch_array($myData)){
+							while($rows = mysql_fetch_array($myData)){
 														echo "<tr>";
-							echo "<td>" . $row['productID'] . "</td>";
-							echo "<td>" . $row['productname'] . "</td>";
-							echo "<td>" . $row['description'] . "</td>";
-							echo "<td>" . $row['category'] . "</td>";
-							echo "<td>" . $row['SKU'] . "</td>";
-							echo "<td>" . $row['stock'] . "</td>";
-							echo "<td>" . $row['cost'] . "</td>";
-							echo "<td>" . $row['price'] . "</td>";
-							echo "<td>" . $row['productimage'] . "</td>";
+							echo "<td>" . $rows['productID'] . "</td>";
+							echo "<td>" . $rows['productName'] . "</td>";
+							echo "<td>" . $rows['description'] . "</td>";
+							echo "<td>" . $rows['category'] . "</td>";
+							echo "<td>" . $rows['SKU'] . "</td>";
+							echo "<td>" . $rows['stock'] . "</td>";
+							echo "<td>" . $rows['cost'] . "</td>";
+							echo "<td>" . $rows['price'] . "</td>";
+                            echo "<td>" . $rows['weight'] . "</td>";
+							echo "<td>" . $rows['productImage'] . "</td>";
+                            echo "<td>" . $rows['productThumb'] . "</td>";
 							echo "</tr>";
 														}
 							?>
@@ -372,9 +383,7 @@ $myData = mysql_query($sql,$con);
         </div>
         <!-- /.container -->
     </footer>
-	<?php
-mysql_close($con);
-?>
+
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
