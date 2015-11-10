@@ -94,13 +94,15 @@
     <div class="container">
         <div class="row">
             <ul class="nav nav-tabs" style="padding: 20px;">
-                <li><a data-toggle="tab" href="#menu1"><span class="wed_color">Log In</span></a></li>
+                <li><a data-toggle="tab" href="#menu1" ><span class="wed_color">Log In</span></a></li>
                 <li><a data-toggle="tab" href="#menu2"><span class="wed_color">Register</span></a></li>
             </ul>
+        </div>
+    </section>
 
-            <div class="tab-content">
-                <div id="menu1" class="tab-pane fade">
-                    <section class="container" style="padding-top: 15px;">
+            <div class="tab-content" style="margin-top: -100px;">
+                <div id="menu1" class="tab-pane fade in active">
+                    <section class="container" style="padding-top: 15px; margin-bottom: 13%;">
                          <div class="container-page">                
                             <div class="col-md-6">
                                 <h3 class="dark-grey"><span class="wed_color">Log In</span></h3>

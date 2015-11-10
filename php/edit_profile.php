@@ -123,9 +123,11 @@ if($count != 1){
                 <li><a data-toggle="tab" href="#billing"><span class="wed_color">Billing Information</span></a></li>
                 <li><a data-toggle="tab" href="#shipping"><span class="wed_color">Shipping Information</span></a></li>
             </ul>
+        </div>
+    </section>
 
-            <div class="tab-content" style="margin-top: -50px;">
-                <div id="profile" class="tab-pane fade">
+            <div class="tab-content" style="margin-top: -150px;">
+                <div id="profile" class="tab-pane fade in active">
                     <section class="container">
                          <div class="container-page">                
                             <div class="col-md-6">
