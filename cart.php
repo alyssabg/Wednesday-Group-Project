@@ -174,9 +174,9 @@
                       	  <button type="button" onclick="showPay()" class="btn btn-success pull-right">
                             Checkout <span class="glyphicon glyphicon-chevron-down"></span>
                         </button>
-                        <button type="button" class="btn btn-default pull-right">
+                     <!--   <button type="button" class="btn btn-default pull-right">
                             <span class="glyphicon glyphicon-tag"></span> <a href="catalog.php">Continue Shopping</a>
-                        </button>
+                        </button>-->
              
                   
                     </div>
