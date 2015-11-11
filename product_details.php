@@ -8,7 +8,6 @@ mysql_select_db("ka578143",$con);
 $id = $_GET['id'];
 
 $sql = "SELECT * FROM wednesday WHERE productID = $id";
-$prodCat = $row['category'];
 $myData = mysql_query($sql,$con);
 ?>
 
@@ -39,8 +38,7 @@ $myData = mysql_query($sql,$con);
 </head>
 
 <body>
-    <?php include_once("analyticstracking.php") ?>
-
+<?php include_once("analyticstracking.php") ?>
   <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -76,7 +74,7 @@ $myData = mysql_query($sql,$con);
                         <a href="menscatalog.php">Men</a>
                     </li>
                     <li>
-                        <a href="#">About</a>
+                        <a href="about.php">About</a>
                     </li>
                     <li>
                         <a href="client.php">Sign In</a>
@@ -136,73 +134,14 @@ $myData = mysql_query($sql,$con);
 					<br>
 					<br>
 					<br>
-                    <div class="ratings">
-                        <p class="pull-right">3 reviews</p>
-                        <p style="padding-left:50px;">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            5.0 stars
-                        </p>
+                    <div class="ratings" style="float:right;">
+                        <div class="rw-ui-container"></div>
                     </div>
                 </div>
 				
 				</div>
 				</div>
 				'?>
-
-
-
-                <div class="container">
-                    <h1 style="text-align:center;">Recommendations</h1>
-                    <?php
-                        $con = mysql_connect("sulley.cah.ucf.edu","ka578143","DancinG#93");
-                        if (!$con) {
-                            die("Can not Connect: " . mysql_error());
-                        }
-                        mysql_select_db("ka578143",$con);
-
-                        $id = $_GET['id'];
-
-                        $sql = "SELECT * FROM wednesday WHERE productID= 759 || productID=174 || productID=332";
-                     
-                              $myData = mysql_query($sql,$con);
-                        ?>
-
-
-                    
-                    <?php
-                    while ($row = mysql_fetch_array($myData))  
-                    echo'
-                    <div class="col-md-4">
-                        <div class="thumbnail">
-                            <a href="product_details.php?id='.$row['productID'].'"><img src="'.$row['productThumb'].'" alt="'.$row['productThumb'].'"></a>
-                            <div class="caption">
-                                <h2 class="pull-right" style="color:#d824c9;">'.$row['price'].'</h2>
-                                <h2><a href="product_details.php?id='.$row['productID'].'">'.$row['productName'].'</a>
-                                </h2>
-                              <p>'.$row['description'].'</p>
-                            </div>
-                           <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    '
-                    ?>
-
-
-                </div>
-
                 <div class="well">
 
                     <div class="text-right">
@@ -398,6 +337,7 @@ $myData = mysql_query($sql,$con);
             </div>
 
         </div>
+
     </div>
     <!-- /.container -->
 
@@ -445,6 +385,49 @@ $myData = mysql_query($sql,$con);
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
+
+
+<script type="text/javascript">(function(d, t, e, m){
+    
+    // Async Rating-Widget initialization.
+    window.RW_Async_Init = function(){
+                
+        RW.init({
+            huid: "267917",
+            uid: "9bedd04bd9a0461fe3bd765a352abda9",
+            source: "website",
+            options: {
+                "advanced": {
+                    "font": {
+                        "hover": {
+                            "color": "#B13F94"
+                        },
+                        "color": "#B13F94"
+                    }
+                },
+                "size": "medium",
+                "label": {
+                    "background": "#F4B6DB"
+                },
+                "style": "heart",
+                "isDummy": false
+            } 
+        });
+        RW.render();
+    };
+        // Append Rating-Widget JavaScript library.
+    var rw, s = d.getElementsByTagName(e)[0], id = "rw-js",
+        l = d.location, ck = "Y" + t.getFullYear() + 
+        "M" + t.getMonth() + "D" + t.getDate(), p = l.protocol,
+        f = ((l.search.indexOf("DBG=") > -1) ? "" : ".min"),
+        a = ("https:" == p ? "secure." + m + "js/" : "js." + m);
+    if (d.getElementById(id)) return;              
+    rw = d.createElement(e);
+    rw.id = id; rw.async = true; rw.type = "text/javascript";
+    rw.src = p + "//" + a + "external" + f + ".js?ck=" + ck;
+    s.parentNode.insertBefore(rw, s);
+    }(document, new Date(), "script", "rating-widget.com/"));</script>
 
 </body>
 

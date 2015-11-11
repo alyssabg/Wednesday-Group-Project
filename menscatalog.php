@@ -184,16 +184,7 @@ if ($req == "") {$searchthing = $myData; } else { $searchthing = $searchData; };
                                 <p class="pull-left">Stock: '.$row['stock'].'</p>
                                 <p class="pull-right">'.$row['price'].'</p>
                             </div>
-                            <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                </p>
-                            </div>
+                            
                         </div>
                     </div>
                     '
