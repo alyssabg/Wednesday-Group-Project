@@ -32,7 +32,7 @@ $searchData = mysql_query($sql);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Wednesday Catalog</title>
+    <title>Wednesday Womens Catalog</title>
     
     
     <style>
