@@ -8,7 +8,9 @@ mysql_select_db("ka578143",$con);
 $id = $_GET['id'];
 
 $sql = "SELECT * FROM wednesday WHERE productID = $id";
+$rev  = "SELECT * FROM reviews WHERE productID = $id";
 $myData = mysql_query($sql,$con);
+$myRev = mysql_query($rev,$con);
 ?>
 
 <!DOCTYPE html>
@@ -142,6 +144,7 @@ $myData = mysql_query($sql,$con);
 				</div>
 				</div>
 				'?>
+
                 <div class="well">
 
                     <div class="text-right">
@@ -170,7 +173,6 @@ $myData = mysql_query($sql,$con);
                                 }
                                 $t=time();
                             ?>
-
    
                             <div class="row">
                                 <div class="col-md-12 col-md-8">
@@ -234,48 +236,26 @@ $myData = mysql_query($sql,$con);
 
                     <div class="row">
                         <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">10 days ago</span>
-                            <p>This product was great in terms of quality. I would definitely buy another!</p>
+
+                        <?php
+                        while ($row = mysql_fetch_array($myRev))  
+                        echo'
+                            <div class="row">
+                            <div class="col-md-12">
+                                <div class="caption-full">  
+                                    <h4>'.$row['UserFirstName'].'</h4>
+                                    <p>'.$row['review'].'</p>
+                                    <hr>
+                                </div>
+                            </div>
+                            </div>
+                        
+                        '?>
+
                         </div>
                     </div>
 
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">12 days ago</span>
-                            <p>I've alredy ordered another one!</p>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">15 days ago</span>
-                            <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
-                        </div>
-                    </div>
-
-                    <hr>
+                
 
                     <div class="row">
                         <div class="col-md-12">
@@ -315,29 +295,64 @@ $myData = mysql_query($sql,$con);
                                 echo $lastName;
                             ?>
 
-                            <span class="pull-right">
-                                <?php
-                                    echo "<span class'pull-right'>";
-                                    echo(date("m-d-Y",$t));
-                                    echo "</span>";
-                                ?>
-                            </span>
-
                             <?php
                                 echo "<br>";
                                 echo $review;
                                 echo "<br>";
                             ?>
 
+
                         </div>
                     </div>
 
                 </div>
 
+
             </div>
 
         </div>
 
+                <div class="row">
+                        <div class="col-md-12">
+                    <?php
+                $con = mysql_connect("sulley.cah.ucf.edu","ka578143","DancinG#93");
+                if (!$con) {
+                    die("Can not Connect: " . mysql_error());
+                }
+                mysql_select_db("ka578143",$con);
+
+                $sql = 'SELECT * FROM wednesday where productID=168 || productID=329 || productID=762';
+                $myData = mysql_query($sql,$con);
+                ?>
+
+                <?php
+                    while ($row = mysql_fetch_array($myData))  
+                    echo'
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <a href="product_details.php?id='.$row['productID'].'"><img src="'.$row['productThumb'].'" alt="'.$row['productThumb'].'"></a>
+                            <div class="caption">
+                                <h2 class="pull-right" style="color:#d824c9;">'.$row['price'].'</h2>
+                                <h2><a href="product_details.php?id='.$row['productID'].'">'.$row['productName'].'</a>
+                                </h2>
+                              <p>'.$row['description'].'</p>
+                            </div>
+                           <div class="ratings">
+                                <p class="pull-right">15 reviews</p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    '
+                    ?>
+                </div>
+            </div>
     </div>
     <!-- /.container -->
 
