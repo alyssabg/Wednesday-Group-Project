@@ -377,18 +377,19 @@ $myData = mysql_query($sql,$con);
         document.getElementById("review").style.visibility = "visible";
     }
 
-   
-    <!-- /.container -->
+   </script>
+    <!-- container -->
 
-    <!-- jQuery -->
+ 
+     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
 
-
-<script type="text/javascript">(function(d, t, e, m){
+<script type="text/javascript">
+(function(d, t, e, m){
     
     // Async Rating-Widget initialization.
     window.RW_Async_Init = function(){
@@ -428,6 +429,10 @@ $myData = mysql_query($sql,$con);
     rw.src = p + "//" + a + "external" + f + ".js?ck=" + ck;
     s.parentNode.insertBefore(rw, s);
     }(document, new Date(), "script", "rating-widget.com/"));</script>
+    
+    
+
+
 
 </body>
 
