@@ -121,16 +121,7 @@ $myData = mysql_query($sql,$con);
                                 </h2>
                               <p>'.$row['description'].'</p>
                             </div>
-                           <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                </p>
-                            </div>
+                           
                         </div>
                     </div>
                     '
@@ -140,8 +131,8 @@ $myData = mysql_query($sql,$con);
                     ?>
                 </div>
                  <div class="col-md-6">
-                    <h1 class="section-heading">Halloween Sale</h1>
-                    <img class="img-responsive img-center roundcorners" src="img/halloween1.png" height="500" alt="">
+                    <h1 class="section-heading">Christmas Sale</h1>
+                    <img class="img-responsive img-center roundcorners" src="img/xmas1.jpg" height="500" alt="">
                 </div>
             </div>
         </div>
@@ -175,16 +166,7 @@ $myData = mysql_query($sql,$con);
                                 </h2>
                               <p>'.$row['description'].'</p>
                             </div>
-                           <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                </p>
-                            </div>
+                          
                         </div>
                     </div>
                     '
