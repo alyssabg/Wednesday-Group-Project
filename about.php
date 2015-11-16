@@ -108,7 +108,7 @@
             
             <p><strong>Our Team</strong></p>
             <p>Emily Frazin - Company Policies, Site Proofing, Payment System</p>
-            <p>Alyssa Gagnon - Search Function, Website Look, Mobile Functionality, Product Ratings, Analytics</p>
+            <p>Alyssa Gagnon - Search Function, Website Look, Mobile Functionality, Product Ratings, Analytics, Shopping Cart</p>
             <p>Logan Lavigne - User Accounts, Admin Accounts</p>
             <p>Kaitlyn Lunceford - Product Database, Order Database</p>
             <p>Barbara Payne - Customer Reviews, Shopping Cart</p>

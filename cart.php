@@ -1,3 +1,46 @@
+<?php
+session_start();
+require_once("dbcontroller.php");
+$db_handle = new DBController();
+if(!empty($_GET["action"])) {
+switch($_GET["action"]) {
+	case "add":
+		if(!empty($_POST["quantity"])) {
+			$productBycode = $db_handle->runQuery("SELECT * FROM wednesday WHERE code='" . $_GET["code"] . "'");
+			$itemArray = array($productBycode[0]["code"]=>array('productName'=>$productBycode[0]["productName"], 'code'=>$productBycode[0]["code"], 'quantity'=>$_POST["quantity"], 'price'=>$productBycode[0]["price"],'productThumb'=>$productBycode[0]["productThumb"], 'productImage'=>$productBycode[0]["productImage"]));
+			
+			if(!empty($_SESSION["cart_item"])) {
+				if(in_array($productBycode[0]["code"],$_SESSION["cart_item"])) {
+					foreach($_SESSION["cart_item"] as $k => $v) {
+							if($productBycode[0]["code"] == $k)
+								$_SESSION["cart_item"][$k]["quantity"] = $_POST["quantity"];
+					}
+				} else {
+					$_SESSION["cart_item"] = array_merge($_SESSION["cart_item"],$itemArray);
+				}
+			} else {
+				$_SESSION["cart_item"] = $itemArray;
+			}
+		}
+	break;
+	case "remove":
+		if(!empty($_SESSION["cart_item"])) {
+			foreach($_SESSION["cart_item"] as $k => $v) {
+					if($_GET["code"] == $k)
+						unset($_SESSION["cart_item"][$k]);				
+					if(empty($_SESSION["cart_item"]))
+						unset($_SESSION["cart_item"]);
+			}
+		}
+	break;
+	case "empty":
+		unset($_SESSION["cart_item"]);
+	break;	
+}
+}
+?>
+
+
 <!doctype html>
 <html>
 <head>
@@ -93,82 +136,64 @@
     <div class="row">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
             <div class="table table-hover">
-            	<div class="row">
-                	<div class="col-sm-12 col-md-12">
-                    <h1 style="text-align:center;">Review Your Order</h1>
-                    </div>
-                </div>
-                <div class="carttitles">
-                <div class="row">
-                    <div class="col-sm-12 col-md-12">
-                        <h4 class="col-sm-1 col-lg-3 col-md-12" style="text-align:center;">Product</h4>
-                        <h4 class="col-sm-1 col-lg-3 col-md-12" style="text-align:center;">Price</h4>
-                        <h4 class="col-sm-1 col-lg-3 col-md-12" style="text-align:center;">Quantity</h4>
-                        <h4 class="col-sm-1 col-lg-3 col-md-12" style="text-align:center;">Total</h4>
-                   </div>
-                </div>
-                </div>
-                <hr>
-            
-                        <div class="col-sm-1 col-lg-3 col-md-12">
-                        	<div class="media">
-                            <div class="cartmobile">
-                            <h4 style="text-align:center;">Product</h4>
-                            <br>
-                            </div>
-                            <h4 class="media-heading"><a href="#">Product name</a></h4>
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
-                          
-                        	</div>
-                        </div>
-                        <div class="cartmobile">
-                            <h4 style="text-align:center;">Price</h4>
-                            <br>
-                         </div>
-                        <div class="col-sm-1 col-lg-3 col-md-12 text-center"><strong>$4.87</strong></div>
-                        <div class="cartmobile">
-                            <h4 style="text-align:center;">Quantity</h4>
-                            <br>
-                         </div>
-                        <div class="col-sm-1 col-lg-3 col-md-12" style="text-align: center">
-                        <input type="text" size="2" value="3">
-                        </div>
-                         <div class="cartmobile">
-                            <h4 style="text-align:center;">Total</h4>
-                            <br>
-                         </div>
-                        <div class="col-sm-1 col-lg-3 col-md-12 text-center"><strong>$14.61</strong></div>
+            	
+                          <div id="shopping-cart">
+<div class="txt-heading">Shopping Cart <a id="btnEmpty" href="cart.php?action=empty">Empty Cart</a></div>
+<?php
+if(isset($_SESSION["cart_item"])){
+    $item_total = 0;
+?>	
+<table cellpadding="10" cellspacing="1">
+<tbody>
+<tr>
+<th class="th3"><strong>Name</strong></th>
+<th class="th3"><strong>Code</strong></th>
+<th class="th1"><strong>Quantity</strong></th>
+<th class="th2"><strong>Price</strong></th>
+<th class="th2"><strong>Action</strong></th>
+</tr>	
+<?php		
+    foreach ($_SESSION["cart_item"] as $item){
+		?>
+				<tr>
+               
+				<td><strong><?php echo $item["productName"]; ?></strong>
+                <br/>
+                <img src="<?php echo $item["productThumb"];?>"></td>
+				<td><?php echo $item["code"]; ?></td>
+				<td><div style="text-align:center;"><?php echo $item["quantity"]; ?></div></td>
+				<td align=right><?php echo "$".$item["price"]; ?></td>
+				<td><a href="cart.php?action=remove&code=<?php echo $item["code"]; ?>" id="btnEmpty">Remove Item</a></td>
+              
+				</tr>
+                
+				<?php
+        $item_total += ($item["price"]*$item["quantity"]);
+		}
+		?>
+
+<tr>
+<td colspan="5" align=right><strong>Total:</strong> <?php echo "$".$item_total; ?></td>
+</tr>
+</tbody>
+</table>		
+  <?php
+}
+?>
+</div>
+               
                       
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                 <hr>
-                    <div class="row">
-                    	<div class="col-sm-12 col-md-12 ">
-                      			<div class="col-md-6 text-left"><h5>Subtotal</h5></div>
-                        		<div class="col-md-6 text-right"><h5><strong>$14.61</strong></h5></div>
-                        </div>
-                    </div>
-                 <hr>
-                    <div class="row">
-                    	<div class="col-sm-12 col-md-12 ">
-                       		<div class="col-md-6 text-left"><h5>Estimated shipping</h5></div>
-                        	<div class="col-md-6 text-right"><h5><strong>$6.94</strong></h5></div>
-                        </div>
-                    </div>
-                 <hr>
-                    <div class="row">
-                    	<div class="col-sm-12 col-md-12 ">
-                    		<div class="col-md-6 text-left"><h3>Total</h3></div>
-                        	<div class="col-md-6 text-right"><h3><strong>$21.55</strong></h3></div>
-                   
-                    	</div>
-                    </div>
+                      
+                      
+                      
+                      
+                      
+                      
+                       
                  
-                    <div class="row">
+                
+                 
+          <div class="row">
                     	<div class="col-sm-12 col-md-12 pull-right">
                       
                       	  <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
@@ -182,9 +207,7 @@
 				<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
 			</form>
 
-                     <!--   <button type="button" class="btn btn-default pull-right">
-                            <span class="glyphicon glyphicon-tag"></span> <a href="catalog.php">Continue Shopping</a>
-                        </button>-->
+                
              
                   
                     </div>

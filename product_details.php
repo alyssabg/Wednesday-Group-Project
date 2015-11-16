@@ -12,6 +12,48 @@ $rev  = "SELECT * FROM reviews WHERE productID = $id";
 $myData = mysql_query($sql,$con);
 $myRev = mysql_query($rev,$con);
 ?>
+<!--for cart-->
+            <?php
+session_start();
+require_once("dbcontroller.php");
+$db_handle = new DBController();
+if(!empty($_GET["action"])) {
+switch($_GET["action"]) {
+	case "add":
+		if(!empty($_POST["quantity"])) {
+			$productBycode = $db_handle->runQuery("SELECT * FROM wednesday WHERE code='" . $_GET["code"] . "'");
+			$itemArray = array($productBycode[0]["code"]=>array('productName'=>$productBycode[0]["productName"], 'code'=>$productBycode[0]["code"], 'quantity'=>$_POST["quantity"], 'price'=>$productBycode[0]["price"], 'productImage'=>$productBycode[0]["productImage"]));
+			
+			if(!empty($_SESSION["cart_item"])) {
+				if(in_array($productBycode[0]["code"],$_SESSION["cart_item"])) {
+					foreach($_SESSION["cart_item"] as $k => $v) {
+							if($productBycode[0]["code"] == $k)
+								$_SESSION["cart_item"][$k]["quantity"] = $_POST["quantity"];
+					}
+				} else {
+					$_SESSION["cart_item"] = array_merge($_SESSION["cart_item"],$itemArray);
+				}
+			} else {
+				$_SESSION["cart_item"] = $itemArray;
+			}
+		}
+	break;
+	case "remove":
+		if(!empty($_SESSION["cart_item"])) {
+			foreach($_SESSION["cart_item"] as $k => $v) {
+					if($_GET["code"] == $k)
+						unset($_SESSION["cart_item"][$k]);				
+					if(empty($_SESSION["cart_item"]))
+						unset($_SESSION["cart_item"]);
+			}
+		}
+	break;
+	case "empty":
+		unset($_SESSION["cart_item"]);
+	break;	
+}
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -107,43 +149,45 @@ $myRev = mysql_query($rev,$con);
         <div class="row">
         	
 
-            <div class="col-md-12">
-
-             	 <?php
-                    while ($row = mysql_fetch_array($myData))  
-                    echo'
-                <div class="thumbnail">
-					<div class="row">
+                       	<?php
+	$product_array = $db_handle->runQuery("SELECT * FROM wednesday WHERE productID = $id");
+	if (!empty($product_array)) { 
+		foreach($product_array as $key=>$value){
+	?>
+<div class="thumbnail">
+             	<form method="post" action="cart.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>">
+         <div class="row">
 					<div class="col-md-6">
-                    <img src="'.$row['productImage'].'" alt="'.$row['productName'].'">
-					</div>
-					<div class="col-md-5">
-                    <div class="caption-full">  
-                        <h2>'.$row['productName'].'</h2>
-                        <hr>
-                        <h1>'.$row['price'].'</h1>
-                       <h3>'.$row['description'].'</h3>
-                       <h4 class="pull-left">Stock: '.$row['stock'].'</h4>
-                       <h4 class="pull-right">Weight: '.$row['weight'].'</h4>
-                       
-                       <br><br><br><hr>
-					   <a class="btn btn-default">S</a>
-					   <a class="btn btn-default">M</a>
-					   <a class="btn btn-default">L</a>
-
-					   <a href="cart.php" class="btn btn-default pull-right">Add To Cart</a>
-                    </div>
-					<br>
-					<br>
-					<br>
-                    <div class="ratings" style="float:right;">
+			<div class="product-image"><img src="<?php echo $product_array[$key]["productImage"]; ?>"></div>
+            		</div>
+                    <div class="col-md-5">
+                    	<div class="caption-full">
+			<h1><div><strong><?php echo $product_array[$key]["productName"]; ?></strong></div></h1>
+            <br/>
+            <br/>
+			<h1 class="pull-right"><div class="product-price"><?php echo "$".$product_array[$key]["price"]; ?></div></h1>
+            <h3><?php echo $product_array[$key]["description"]?></h3>
+            <br/>
+            <br/>
+            <br/>
+            <p class="pull-left">Quantity *One size fits all*</p>
+         
+			<div><input type="text" name="quantity" class="quan pull-right" value="1" size="2" /><input type="submit" value="Add to cart" class="btn btn-default pull-right" /></div>
+            			</div>
+            		</div>
+          </div>
+			</form>
+            <div class="ratings" style="float:right; padding-bottom:20px;">
                         <div class="rw-ui-container"></div>
                     </div>
-                </div>
-				
-				</div>
-				</div>
-				'?>
+                    <br/>
+                    <br/>
+                    <br/>
+</div>
+            	<?php
+			}
+	}
+	?>
 
                 <div class="well">
 
