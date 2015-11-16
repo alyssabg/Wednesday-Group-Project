@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
 
-<title>Wednesday Login</title>
+<title>Wednesday Client</title>
 
 <style>
 @import url('css/bootstrap.css');
@@ -100,13 +100,12 @@
         </div>
     </section>
 
-            <div class="tab-content" style="margin-top: -100px; padding-top:60px;">
+            <div class="tab-content" style="margin-top: -100px;">
                 <div id="menu1" class="tab-pane fade in active">
                     <section class="container" style="padding-top: 15px; margin-bottom: 13%;">
                          <div class="container-page">                
                             <div class="col-md-6">
-                              <h3 class="dark-grey"><span class="wed_color">Log In</span></h3>
-                               
+                                <h3 class="dark-grey"><span class="wed_color">Log In</span></h3>
                                 
                                 <form method="post" action="php/login_check.php">
                                 <fieldset class="clearfix">

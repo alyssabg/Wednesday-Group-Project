@@ -118,7 +118,7 @@ if($count != 1){
 
         <div class="row" style="margin-bottom: 10px;">
             <ul class="nav nav-tabs" style="padding: 20px;">
-                <li ><a data-toggle="tab" href="#recent"><span class="wed_color">Recent Orders</span></a></li>
+                <li><a data-toggle="tab" href="#recent"><span class="wed_color">Recent Orders</span></a></li>
                 <li><a data-toggle="tab" href="#profile"><span class="wed_color">Profile</span></a></li>
                 <li><a data-toggle="tab" href="#billing"><span class="wed_color">Billing Information</span></a></li>
                 <li><a data-toggle="tab" href="#shipping"><span class="wed_color">Shipping Information</span></a></li>
@@ -281,7 +281,7 @@ if($count != 1){
 
 
                     <div id="shipping" class="tab-pane fade">
-                    <section class="container">
+                    <section class="container" style="margin-bottom: 15px;">
                          <div class="container-page">                
                             <div class="col-md-6">
                                 <h3 class="dark-grey"><span class="wed_color">Shipping Information</span></h3>

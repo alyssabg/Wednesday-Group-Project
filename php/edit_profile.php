@@ -133,7 +133,7 @@ if($count != 1){
                             <div class="col-md-6">
                                 <h3 class="dark-grey"><span class="wed_color">Update Profile</span></h3>
                                 <div id="myForm">
-                                <form method="post" action="../update_prof_check.php">
+                                <form method="post" action="update_prof_check.php">
                                     <fieldset class="clearfix">
 
                                         <div class="form-group col-lg-12">
@@ -154,12 +154,12 @@ if($count != 1){
                         
                                         <div class="form-group col-lg-6">
                                             <label>Password (Hidden for Security)</label>
-                                            <input name='new_password' type="password" class="form-control" onFocus="if(this.value == '<?php echo $row['UserPassword'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserPassword'];?>'" value="<?php echo $row['UserPassword'];?>" pattern=".{6,14}">
+                                            <input name='new_password_prof' type="password" class="form-control" onFocus="if(this.value == '<?php echo $row['UserPassword'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserPassword'];?>'" value="<?php echo $row['UserPassword'];?>" pattern=".{6,14}">
                                         </div>
                         
                                         <div class="form-group col-lg-6">
                                             <label>Confirm Password</label>
-                                            <input name='veripass' type="password" class="form-control" onFocus="if(this.value == '<?php echo $row['UserPassword'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserPassword'];?>'" value="<?php echo $row['UserPassword'];?>" pattern=".{6,14}">
+                                            <input name='veripass_prof' type="password" class="form-control" onFocus="if(this.value == '<?php echo $row['UserPassword'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserPassword'];?>'" value="<?php echo $row['UserPassword'];?>" pattern=".{6,14}">
                                         </div>  
 
                                         <div class="form-group col-lg-12">
@@ -290,28 +290,28 @@ if($count != 1){
                             <div class="col-md-6">
                                 <h3 class="dark-grey"><span class="wed_color">Update Billing Information</span></h3>
                                 <div id="myForm">
-                                <form method="post" action="../update_bill_check.php">
+                                <form method="post" action="update_bill_check.php">
                                     <fieldset class="clearfix">
 
                                         <div class="form-group col-lg-12">
                                             <label>First Name</label>
-                                            <input name='first_name' type="text" class="form-control" onFocus="if(this.value == '<?php echo $row['UserFirstBill'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserFirstBill'];?>'" value="<?php echo $row['UserFirstBill'];?>" pattern=".{0,50}" required="required">
+                                            <input name='new_first_bill' type="text" class="form-control" onFocus="if(this.value == '<?php echo $row['UserFirstBill'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserFirstBill'];?>'" value="<?php echo $row['UserFirstBill'];?>" pattern=".{0,50}" required="required">
 
                                          </div>
 
                                          <div class="form-group col-lg-12">
                                             <label>Last Name</label>
-                                            <input name='last_name' type="text" class="form-control" onFocus="if(this.value == '<?php echo $row['UserLastBill'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserLastBill'];?>'" value="<?php echo $row['UserLastBill'];?>" pattern=".{0,50}" required="required">
+                                            <input name='new_last_bill' type="text" class="form-control" onFocus="if(this.value == '<?php echo $row['UserLastBill'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserLastBill'];?>'" value="<?php echo $row['UserLastBill'];?>" pattern=".{0,50}" required="required">
                                          </div>
 
                                         <div class="form-group col-lg-12">
                                             <label>Credit Card</label>
-                                            <input name='creditcard' type="tel" class="form-control" onFocus="if(this.value == '<?php echo $row['UserCreditCard'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserCreditCard'];?>'" value="<?php echo $row['UserCreditCard'];?>" pattern="[0-9]{13,16}" required="required">
+                                            <input name='cc' type="tel" class="form-control" onFocus="if(this.value == '<?php echo $row['UserCreditCard'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserCreditCard'];?>'" value="<?php echo $row['UserCreditCard'];?>" pattern="[0-9]{13,16}" required="required">
                                          </div>
                         
                                         <div class="form-group col-lg-12">
                                             <label>Re-Type Credit Card</label>
-                                            <input name='vericard' type="tel" class="form-control" onFocus="if(this.value == '<?php echo $row['UserCreditCard'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserCreditCard'];?>'" value="<?php echo $row['UserCreditCard'];?>" pattern="[0-9]{13,16}" required="required">
+                                            <input name='vcc' type="tel" class="form-control" onFocus="if(this.value == '<?php echo $row['UserCreditCard'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserCreditCard'];?>'" value="<?php echo $row['UserCreditCard'];?>" pattern="[0-9]{13,16}" required="required">
                                          </div> 
 
                                          <div class="form-group col-lg-12">
@@ -321,19 +321,19 @@ if($count != 1){
 
                                         <div class="form-group col-lg-12">
                                             <label>Address</label>
-                                            <input name='address1' type="text" class="form-control" onFocus="if(this.value == '<?php echo $row['UserAddressBill'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserAddressBill'];?>'" value="<?php echo $row['UserAddressBill'];?>" required="required">
+                                            <input name='new_address1_bill' type="text" class="form-control" onFocus="if(this.value == '<?php echo $row['UserAddressBill'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserAddressBill'];?>'" value="<?php echo $row['UserAddressBill'];?>" required="required">
                                          </div>
 
                                          <div class="form-group col-lg-12">
-                                            <input name='address2' type="text" class="form-control" onFocus="if(this.value == '<?php echo $row['UserAddress2Bill'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserAddress2Bill'];?>'" value="<?php echo $row['UserAddress2Bill'];?>" required="required">
+                                            <input name='new_address2_bill' type="text" class="form-control" onFocus="if(this.value == '<?php echo $row['UserAddress2Bill'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserAddress2Bill'];?>'" value="<?php echo $row['UserAddress2Bill'];?>">
                                          </div>
 
                                          <div class="form-group col-lg-6">
-                                            <input name='city' type="text" class="form-control" onFocus="if(this.value == '<?php echo $row['UserCityBill'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserCityBill'];?>'" value="<?php echo $row['UserCityBill'];?>" required="required">
+                                            <input name='new_city_bill' type="text" class="form-control" onFocus="if(this.value == '<?php echo $row['UserCityBill'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserCityBill'];?>'" value="<?php echo $row['UserCityBill'];?>" required="required">
                                          </div>
 
                                         <div class="form-group col-lg-3">
-                                              <select class="form-control" id="State" name="state">
+                                              <select class="form-control" id="State" name="new_state_bill">
                                                     <option><?php echo $row['UserStateBill'];?></option>
                                                     <option>AK</option>
                                                     <option>AL</option>
@@ -389,11 +389,11 @@ if($count != 1){
                                         </div>
                                         
                                         <div class="form-group col-lg-3">
-                                            <input name='zip' type="tel" class="form-control" onFocus="if(this.value == '<?php echo $row['UserZipBill'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserZip'];?>'" value="<?php echo $row['UserZip'];?>" required="required">
+                                            <input name='new_zip_bill' type="tel" class="form-control" onFocus="if(this.value == '<?php echo $row['UserZipBill'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserZipBill'];?>'" value="<?php echo $row['UserZipBill'];?>" required="required">
                                         </div>
 
                                         <div class="form-group col-lg-12">
-                                            <input name='country' type="text" class="form-control" onFocus="if(this.value == 'United States') this.value = 'United States'" onBlur="if(this.value == 'United States') this.value = 'United States'" value="United States" required="required">
+                                            <input name='new_country_bill' type="text" class="form-control" onFocus="if(this.value == 'United States') this.value = 'United States'" onBlur="if(this.value == 'United States') this.value = 'United States'" value="United States" required="required">
                                         </div>
                                         <br />
                                         <!--
@@ -441,35 +441,35 @@ if($count != 1){
                             <div class="col-md-6">
                                 <h3 class="dark-grey"><span class="wed_color">Update Shipping Information</span></h3>
                                 <div id="myForm">
-                                <form method="post" action="../update_ship_check.php">
+                                <form method="post" action="update_ship_check.php">
                                     <fieldset class="clearfix">
 
                                         <div class="form-group col-lg-12">
                                             <label>First Name</label>
-                                            <input name='first_name' type="text" class="form-control" onFocus="if(this.value == '<?php echo $row['UserFirstNameShip'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserFirstNameShip'];?>'" value="<?php echo $row['UserFirstNameShip'];?>" pattern=".{0,50}" required="required">
+                                            <input name='new_first_ship' type="text" class="form-control" onFocus="if(this.value == '<?php echo $row['UserFirstNameShip'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserFirstNameShip'];?>'" value="<?php echo $row['UserFirstNameShip'];?>" pattern=".{0,50}" required="required">
 
                                          </div>
 
                                          <div class="form-group col-lg-12">
                                             <label>Last Name</label>
-                                            <input name='last_name' type="text" class="form-control" onFocus="if(this.value == '<?php echo $row['UserLastNameShip'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserLastNameShip'];?>'" value="<?php echo $row['UserLastNameShip'];?>" pattern=".{0,50}" required="required">
+                                            <input name='new_last_ship' type="text" class="form-control" onFocus="if(this.value == '<?php echo $row['UserLastNameShip'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserLastNameShip'];?>'" value="<?php echo $row['UserLastNameShip'];?>" pattern=".{0,50}" required="required">
                                          </div>
 
                                         <div class="form-group col-lg-12">
                                             <label>Address</label>
-                                            <input name='address1' type="text" class="form-control" onFocus="if(this.value == '<?php echo $row['UserAddressShip'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserAddressShip'];?>'" value="<?php echo $row['UserAddressShip'];?>" required="required">
+                                            <input name='new_address1_ship' type="text" class="form-control" onFocus="if(this.value == '<?php echo $row['UserAddressShip'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserAddressShip'];?>'" value="<?php echo $row['UserAddressShip'];?>" required="required">
                                          </div>
 
                                          <div class="form-group col-lg-12">
-                                            <input name='address2' type="text" class="form-control" onFocus="if(this.value == '<?php echo $row['UserAddress2Ship'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserAddress2Ship'];?>'" value="<?php echo $row['UserAddress2Ship'];?>" required="required">
+                                            <input name='new_address2_ship' type="text" class="form-control" onFocus="if(this.value == '<?php echo $row['UserAddress2Ship'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserAddress2Ship'];?>'" value="<?php echo $row['UserAddress2Ship'];?>">
                                          </div>
 
                                          <div class="form-group col-lg-6">
-                                            <input name='city' type="text" class="form-control" onFocus="if(this.value == '<?php echo $row['UserCityShip'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserCityShip'];?>'" value="<?php echo $row['UserCityShip'];?>" required="required">
+                                            <input name='new_city_ship' type="text" class="form-control" onFocus="if(this.value == '<?php echo $row['UserCityShip'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserCityShip'];?>'" value="<?php echo $row['UserCityShip'];?>" required="required">
                                          </div>
 
                                         <div class="form-group col-lg-3">
-                                              <select class="form-control" id="State" name="state">
+                                              <select class="form-control" id="State" name="new_state_ship">
                                                     <option><?php echo $row['UserStateShip'];?></option>
                                                     <option>AK</option>
                                                     <option>AL</option>
@@ -525,11 +525,11 @@ if($count != 1){
                                         </div>
                                         
                                         <div class="form-group col-lg-3">
-                                            <input name='zip' type="tel" class="form-control" onFocus="if(this.value == '<?php echo $row['UserZipShip'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserZipShip'];?>'" value="<?php echo $row['UserZipShip'];?>" required="required">
+                                            <input name='new_zip_ship' type="tel" class="form-control" onFocus="if(this.value == '<?php echo $row['UserZipShip'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $row['UserZipShip'];?>'" value="<?php echo $row['UserZipShip'];?>" required="required">
                                         </div>
 
                                         <div class="form-group col-lg-12">
-                                            <input name='country' type="text" class="form-control" onFocus="if(this.value == 'United States') this.value = 'United States'" onBlur="if(this.value == 'United States') this.value = 'United States'" value="United States" required="required">
+                                            <input name='new_country_ship' type="text" class="form-control" onFocus="if(this.value == 'United States') this.value = 'United States'" onBlur="if(this.value == 'United States') this.value = 'United States'" value="United States" required="required">
                                         </div>
                                         <br />
                                         <!--

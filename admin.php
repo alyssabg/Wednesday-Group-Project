@@ -287,7 +287,7 @@ if($access != 3){
 		</div>
 	</div>
    
-	<div class="container">
+	<div class="container col-lg-12">
     
     
     
@@ -295,7 +295,7 @@ if($access != 3){
     <!--<h1>Click the filter icon <small>(<i class="glyphicon glyphicon-filter"></i>)</small></h1>-->
     	<div class="row">
 			
-			<div class="col-md-12">
+			<div class="col-lg-12">
 				<div class="panel panel-success">
 					<div class="panel-heading">
 						<h3 class="panel-title">Products</h3>
@@ -323,6 +323,8 @@ if($access != 3){
                                 <th>Weight</th>
                                 <th>Image URL</th>
                                 <th>Image Thumbnail</th>
+                                <th>Update Product</th>
+                                <th>Delete Product</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -340,6 +342,20 @@ if($access != 3){
                             echo "<td>" . $rows['weight'] . "</td>";
 							echo "<td>" . $rows['productImage'] . "</td>";
                             echo "<td>" . $rows['productThumb'] . "</td>";
+                            echo "<td>
+                                    <form method='post' action='php/admin_update.php'>
+                                    <button type='submit' class='btn btn-success' name='prodUpdate' value='" . $rows['productID'] . "'>
+                                        <i class='fa fa-pencil-square-o'></i>
+                                    </button>
+                                    </form>
+                                  </td>";
+                            echo "<td>
+                                    <form method='post' action='php/admin_remove.php'>
+                                    <button type='submit' class='btn btn-success' name='prodID' value='" . $rows['productID'] . "'>
+                                        <i class='fa fa-trash-o'></i>
+                                    </button>
+                                    </form>
+                                   </td>";
 							echo "</tr>";
 														}
 							?>
@@ -356,7 +372,7 @@ if($access != 3){
     
     
   <!-- Footer -->
-    <footer>
+    <footer class="col-lg-12">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
