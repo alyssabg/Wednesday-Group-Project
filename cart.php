@@ -159,7 +159,7 @@ if(isset($_SESSION["cart_item"])){
                
 				<td><strong><?php echo $item["productName"]; ?></strong>
                 <br/>
-                <img src="<?php echo $item["productThumb"];?>"></td>
+                <div class="cartmobile"><img src="<?php echo $item["productThumb"];?>"></div></td>
 				<td><?php echo $item["code"]; ?></td>
 				<td><div style="text-align:center;"><?php echo $item["quantity"]; ?></div></td>
 				<td align=right><?php echo "$".$item["price"]; ?></td>

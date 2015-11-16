@@ -170,13 +170,14 @@ switch($_GET["action"]) {
             <br/>
             <br/>
             <br/>
-            <p class="pull-left">Quantity *One size fits all*</p>
+            <div class="cartmobile"><p class="pull-left">Quantity *One size fits all*</p></div>
          
 			<div><input type="text" name="quantity" class="quan pull-right" value="1" size="2" /><input type="submit" value="Add to cart" class="btn btn-default pull-right" /></div>
             			</div>
             		</div>
           </div>
 			</form>
+            <br/>
             <div class="ratings" style="float:right; padding-bottom:20px;">
                         <div class="rw-ui-container"></div>
                     </div>

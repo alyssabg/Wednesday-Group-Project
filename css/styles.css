@@ -281,13 +281,14 @@ a:hover, a:active {
 	.carttitles{
 		display:none;
 	}
+	.cartmobile{
+		display:none;
+	}
 }
 @media screen and (min-width:769px) and (min-width:1024px){
 	.mobilelogo{
 		display:none;
 	}
-	.cartmobile{
-		display:none;
-	}
+	
 	
 }
