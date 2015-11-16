@@ -196,16 +196,13 @@ if(isset($_SESSION["cart_item"])){
           <div class="row">
                     	<div class="col-sm-12 col-md-12 pull-right">
                       
-                      	  <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-				<input type="hidden" name="cmd" value="_xclick">
-				<input type="hidden" name="business" value="stephy2012-buyer@knights.ucf.edu">
-				<input type="hidden" name="lc" value="US">
-				<input type="hidden" name="button_subtype" value="services">
-				<input type="hidden" name="currency_code" value="USD">
-				<input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHosted">
-				<input type="submit" class="btn btn-success pull-right" value="Checkout" name="submit" alt="PayPal - The safer, easier way to pay online!">
-				<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-			</form>
+                   <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                        <input type="hidden" name="cmd" value="_s-xclick">
+                        <input type="hidden" name="hosted_button_id" value="ENWUPEB8FTUDS">
+                        <input type="submit" class="btn btn-success pull-right" value="Checkout" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                        <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                    </form>
+                
 
                 
              
