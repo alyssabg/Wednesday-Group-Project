@@ -27,9 +27,9 @@ if($access != 3){
     
 }
 
-$sales = "SELECT MAX(orderNumber) FROM orders";
-$reviews = "SELECT MAX(reviewID) FROM reviews";
-$orders = "SELECT SUM(quantity) AS TotalItemsOrdered FROM orders";
+$sales = "SELECT MAX(orderNumber) AS TotalSales FROM orders";
+$reviews = "SELECT MAX(reviewID) AS TotalReviews FROM reviews";
+$orders = "SELECT SUM(quantity) AS TotalOrders FROM orders";
 $revenue = "SELECT SUM(price) AS TotalRevenue FROM orders";
 
 $salesResult = mysql_query($sales) or die(mysql_error());
@@ -37,12 +37,18 @@ $reviewResult = mysql_query($reviews) or die(mysql_error());
 $ordersResult = mysql_query($orders) or die(mysql_error());
 $revenueResult = mysql_query($revenue) or die(mysql_error());
 
-/*
-$ttlSales = mysql_num_rows($result);
-$ttlReviews = 
-$ttlOrders = 
-$ttlRevenue = 
-*/
+$rowSales = mysql_fetch_assoc($salesResult);
+$rowReviews = mysql_fetch_assoc($reviewResult);
+$rowOrders = mysql_fetch_assoc($ordersResult);
+$rowRevenue = mysql_fetch_assoc($revenueResult);
+
+
+$query2 = "SELECT * FROM orders";
+
+$result2 = mysql_query($query2) or die(mysql_error());
+$count2 = mysql_num_rows($result2);
+//$rows = mysql_fetch_assoc($result2);
+
 ?>
 
 <!doctype html>
@@ -157,7 +163,7 @@ $ttlRevenue =
                         	<h4><strong>Total Sales:</strong></h4>
                         </div>
                         <div class="col-md-2">
-                        	<h4><?php echo $salesResult;?></h4>
+                        	<h4><?php echo $rowSales['TotalSales'];?></h4>
                         </div>
                       </div>
 					  <div class="row">
@@ -165,7 +171,7 @@ $ttlRevenue =
                         	<h4><strong>Total Orders Placed:</strong></h4>
                         </div>
                         <div class="col-md-2">
-                        	<h4><?php echo $ordersResult;?></h4>
+                        	<h4><?php echo $rowOrders['TotalOrders'];?></h4>
                         </div>
                       </div>
                         <div class="row">
@@ -173,7 +179,7 @@ $ttlRevenue =
                         	<h4><strong>Total Revenue:</strong></h4>
                         </div>
                         <div class="col-md-2">
-                        	<h4><?php echo $revenueResult;?></h4>
+                        	<h4><?php echo $rowRevenue['TotalRevenue'];?></h4>
                         </div>
                       </div>
                         <div class="row">
@@ -181,7 +187,7 @@ $ttlRevenue =
                         	<h4><strong>Total Reviews/Comments:</strong></h4>
                         </div>
                         <div class="col-md-2">
-                        	<h4><?php echo $reviewResult;?></h4>
+                        	<h4><?php echo $rowReviews['TotalReviews'];?></h4>
                         </div>
                       </div>
                       <br>
@@ -211,23 +217,37 @@ $ttlRevenue =
 		</div>
 	</div>
     	
-   <div class="container">
+    <section style="padding-top: 15px;">
+    <div class="container" style="width: 100%;">
+        <div class="row" style="margin-bottom: 10px;">
+            <ul class="nav nav-tabs" style="padding: 20px;">
+                <li><a data-toggle="tab" href="#products"><span class="wed_color">View/Add Products</span></a></li>
+                <li><a data-toggle="tab" href="#orders"><span class="wed_color">View/Cancel Orders</span></a></li>
+            </ul>
+            </div>
+        </section>
+
+            <div class="tab-content" style="margin-top: -150px;">
+                <div id="products" class="tab-pane fade in active">
+                    <section class="container" style="margin-bottom: 13%; width: 100%;">
+                         
+                         <div class="container" style="width: 100%;">
     <!--<h1>Click the filter icon <small>(<i class="glyphicon glyphicon-filter"></i>)</small></h1>-->
-    	<div class="row">
-			
-			<div class="col-md-12">
-				<div class="panel panel-success">
-					<div class="panel-heading">
-						<h3 class="panel-title">Add Product</h3>
-						<div class="pull-right">
-							<!--<span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
-								<i class="glyphicon glyphicon-filter"></i>
-							</span>-->
-						</div>
-					</div>
-					<!--<div class="panel-body">
-						<input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Filter Tasks" />
-					</div>-->
+        <div class="row">
+            <br />
+            <div class="col-lg-12" style="width: 100%; margin-bottom: 25px">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Add Product</h3>
+                        <div class="pull-right">
+                            <!--<span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+                                <i class="glyphicon glyphicon-filter"></i>
+                            </span>-->
+                        </div>
+                    </div>
+                    <!--<div class="panel-body">
+                        <input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Filter Tasks" />
+                    </div>-->
                     <div id="myForm">
                         <form method="post" action="php/admin_add.php">
                             <fieldset class="clearfix">
@@ -303,37 +323,34 @@ $ttlRevenue =
                             </fieldset>
                         </form>
                     </div>
-				</div>
-			</div>
-		</div>
-	</div>
-   
-	<div class="container col-lg-12">
-    
-    
-    
-    
-    <!--<h1>Click the filter icon <small>(<i class="glyphicon glyphicon-filter"></i>)</small></h1>-->
-    	<div class="row">
-			
-			<div class="col-lg-12">
-				<div class="panel panel-success">
-					<div class="panel-heading">
-						<h3 class="panel-title">Products</h3>
-						<div class="pull-right">
-							<!--<span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
-								<i class="glyphicon glyphicon-filter"></i>
-							</span>-->
-						</div>
-					</div>
-					<!--<div class="panel-body">
-						<input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Filter Tasks" />
-					</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container col-lg-12">
+<!--<h1>Click the filter icon <small>(<i class="glyphicon glyphicon-filter"></i>)</small></h1>-->
+        <div class="row">
+            
+            <div class="col-lg-12">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Products</h3>
+                        <div class="pull-right">
+                            <!--<span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+                                <i class="glyphicon glyphicon-filter"></i>
+                            </span>-->
+                        </div>
+                    </div>
+                    <!--<div class="panel-body">
+                        <input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Filter Tasks" />
+                    </div>-->
                     <div class="table-responsive">
-					<table class="table table-hover" id="task-table">
-						<thead>
-							<tr>
-								<th>Product Id</th>
+                    <table class="table table-hover" id="task-table">
+                        <thead>
+                            <tr>
+                                <th>Product Id</th>
                                 <th>Product Name</th>
                                 <th>Description</th>
                                 <th>Gender</th>
@@ -347,24 +364,24 @@ $ttlRevenue =
                                 <th>Image Thumbnail</th>
                                 <th>Update Product</th>
                                 <th>Delete Product</th>
-							</tr>
-						</thead>
-						<tbody>
+                            </tr>
+                        </thead>
+                        <tbody>
                         <?php
-							while($rows = mysql_fetch_array($myData)){
-								$id = $rows['productID'];
+                            while($rows = mysql_fetch_array($myData)){
+                                $id = $rows['productID'];
                                                         echo "<tr>";
-							echo "<td>" . $rows['productID'] . "</td>";
-							echo "<td>" . $rows['productName'] . "</td>";
-							echo "<td>" . $rows['description'] . "</td>";
+                            echo "<td>" . $rows['productID'] . "</td>";
+                            echo "<td>" . $rows['productName'] . "</td>";
+                            echo "<td>" . $rows['description'] . "</td>";
                             echo "<td>" . $rows['gender'] . "</td>";
-							echo "<td>" . $rows['category'] . "</td>";
-							echo "<td>" . $rows['SKU'] . "</td>";
-							echo "<td>" . $rows['stock'] . "</td>";
-							echo "<td>" . $rows['cost'] . "</td>";
-							echo "<td>" . $rows['price'] . "</td>";
+                            echo "<td>" . $rows['category'] . "</td>";
+                            echo "<td>" . $rows['SKU'] . "</td>";
+                            echo "<td>" . $rows['stock'] . "</td>";
+                            echo "<td>" . $rows['cost'] . "</td>";
+                            echo "<td>" . $rows['price'] . "</td>";
                             echo "<td>" . $rows['weight'] . "</td>";
-							echo "<td>" . $rows['productImage'] . "</td>";
+                            echo "<td>" . $rows['productImage'] . "</td>";
                             echo "<td>" . $rows['productThumb'] . "</td>";
                             echo "<td>
                                     <a href='php/admin_update.php?id=$id'>
@@ -381,20 +398,105 @@ $ttlRevenue =
                                     </a>
                                    </td>";
                             
-							echo "</tr>";
-														}
-							?>
-						</tbody>
-					</table>
+                            echo "</tr>";
+                                                        }
+                            ?>
+                        </tbody>
+                    </table>
                     </div>
-				</div>
-			</div>
-		</div>
-	</div>
-    
-    
-    
-    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+
+
+
+                <div id="orders" class="tab-pane fade in">
+                    <section class="container" style="margin-bottom: 13%; width: 100%;">
+                         
+                         <div class="container" style="width: 100%;">
+    <!--<h1>Click the filter icon <small>(<i class="glyphicon glyphicon-filter"></i>)</small></h1>-->
+        <div class="row">
+            <br />
+            
+    <div class="container col-lg-12">
+<!--<h1>Click the filter icon <small>(<i class="glyphicon glyphicon-filter"></i>)</small></h1>-->
+        <div class="row">
+            
+            <div class="col-lg-12">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Customer Orders</h3>
+                        <div class="pull-right">
+                            <!--<span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+                                <i class="glyphicon glyphicon-filter"></i>
+                            </span>-->
+                        </div>
+                    </div>
+                    <!--<div class="panel-body">
+                        <input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Filter Tasks" />
+                    </div>-->
+                    <div class="table-responsive">
+                    <table class="table table-hover" id="task-table">
+                        <thead>
+                            <tr>
+                                <th>Order Number</th>
+                                <th>Product ID</th>
+                                <th>User ID</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Address Line 1</th>
+                                <th>Address Line 2</th>
+                                <th>City</th>
+                                <th>State</th>
+                                <th>Zip</th>
+                                <th>Country</th>
+                                <th>Cancel Order</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                            while($rows = mysql_fetch_assoc($result2)){
+                                $id = $rows['orderNumber'];
+                                        echo "<tr>";
+                                        echo "<td>" . $rows['orderNumber'] . "</td>";
+                                        echo "<td>" . $rows['productID'] . "</td>";
+                                        echo "<td>" . $rows['UserID'] . "</td>";
+                                        echo "<td>" . $rows['quantity'] . "</td>";
+                                        echo "<td>" . $rows['price'] . "</td>";
+                                        echo "<td>" . $rows['UserFirstNameShip'] . "</td>";
+                                        echo "<td>" . $rows['UserLastNameShip'] . "</td>";
+                                        echo "<td>" . $rows['UserAddressShip'] . "</td>";
+                                        echo "<td>" . $rows['UserAddress2Ship'] . "</td>";
+                                        echo "<td>" . $rows['UserCityShip'] . "</td>";
+                                        echo "<td>" . $rows['UserStateShip'] . "</td>";
+                                        echo "<td>" . $rows['UserZipShip'] . "</td>";
+                                        echo "<td>" . $rows['UserCountryShip'] . "</td>";
+                                        echo "<td>
+                                            <a href='php/admin_cancel.php?id=$id'>
+                                            <button type='submit' class='btn btn-success' id= '$id' name='". $rows['UserID'] ."' value='" . $rows['UserID'] . "'>
+                                                <i class='fa fa-trash-o'></i>
+                                            </button>
+                                            </a>
+                                           </td>";
+                                        echo "</tr>";
+                                    }
+                            ?>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+                </div>
+
     
   <!-- Footer -->
     <footer class="col-lg-12">

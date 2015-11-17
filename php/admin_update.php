@@ -29,6 +29,21 @@ if($access != 3){
     
 }
 
+$sales = "SELECT MAX(orderNumber) AS TotalSales FROM orders";
+$reviews = "SELECT MAX(reviewID) AS TotalReviews FROM reviews";
+$orders = "SELECT SUM(quantity) AS TotalOrders FROM orders";
+$revenue = "SELECT SUM(price) AS TotalRevenue FROM orders";
+
+$salesResult = mysql_query($sales) or die(mysql_error());
+$reviewResult = mysql_query($reviews) or die(mysql_error());
+$ordersResult = mysql_query($orders) or die(mysql_error());
+$revenueResult = mysql_query($revenue) or die(mysql_error());
+
+$rowSales = mysql_fetch_assoc($salesResult);
+$rowReviews = mysql_fetch_assoc($reviewResult);
+$rowOrders = mysql_fetch_assoc($ordersResult);
+$rowRevenue = mysql_fetch_assoc($revenueResult);
+
 ?>
 
 <!doctype html>
@@ -128,53 +143,53 @@ if($access != 3){
     </div>
     
     <div class="container">
-    	<div class="row">
-			
-			<div class="col-md-4">
-				<div class="panel panel-success">
-					<div class="panel-heading">
-						<h3 class="panel-title">Status</h3>
-						<div class="pull-right">
-						
-						</div>
-					</div>
-					    <div class="row">
-                      	<div class="col-md-10">
-                        	<h4><strong>Total Sales:</strong></h4>
+        <div class="row">
+            
+            <div class="col-md-4">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Status</h3>
+                        <div class="pull-right">
+                        
+                        </div>
+                    </div>
+                        <div class="row">
+                        <div class="col-md-10">
+                            <h4><strong>Total Sales:</strong></h4>
                         </div>
                         <div class="col-md-2">
-                        	<h4>32</h4>
+                            <h4><?php echo $rowSales['TotalSales'];?></h4>
                         </div>
                       </div>
-					  <div class="row">
-                      	<div class="col-md-10">
-                        	<h4><strong>New Orders Placed:</strong></h4>
+                      <div class="row">
+                        <div class="col-md-10">
+                            <h4><strong>Total Orders Placed:</strong></h4>
                         </div>
                         <div class="col-md-2">
-                        	<h4>5</h4>
+                            <h4><?php echo $rowOrders['TotalOrders'];?></h4>
                         </div>
                       </div>
                         <div class="row">
-                      	<div class="col-md-10">
-                        	<h4><strong>New Payment Recieved:</strong></h4>
+                        <div class="col-md-10">
+                            <h4><strong>Total Revenue:</strong></h4>
                         </div>
                         <div class="col-md-2">
-                        	<h4>5</h4>
+                            <h4><?php echo $rowRevenue['TotalRevenue'];?></h4>
                         </div>
                       </div>
                         <div class="row">
-                      	<div class="col-md-10">
-                        	<h4><strong>New Reviews/Comments:</strong></h4>
+                        <div class="col-md-10">
+                            <h4><strong>Total Reviews/Comments:</strong></h4>
                         </div>
                         <div class="col-md-2">
-                        	<h4>2</h4>
+                            <h4><?php echo $rowReviews['TotalReviews'];?></h4>
                         </div>
                       </div>
                       <br>
                       <br>
                       <br>
-				</div>
-			</div>
+                </div>
+            </div>
 	
     
    <!-- <div class="container">
