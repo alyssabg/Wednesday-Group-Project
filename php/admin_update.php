@@ -237,7 +237,7 @@ if($access != 3){
 
                                 <div class="form-group col-md-4">
                                     <label>Gender</label>
-                                    <input name='description' type="text" class="form-control" onFocus="if(this.value == '<?php echo $rows['gender'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $rows['gender'];?>'" value="<?php echo $rows['gender'];?>" required="required">
+                                    <input name='gender' type="text" class="form-control" onFocus="if(this.value == '<?php echo $rows['gender'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $rows['gender'];?>'" value="<?php echo $rows['gender'];?>" required="required">
                                 </div>
 
                                 <div class="form-group col-md-4">
