@@ -1,5 +1,6 @@
 <?php
 session_start();
+require('../includes/con_wed.php');
 require('../includes/con_wed2.php');
 $email = $_SESSION['email'];
 $password = $_SESSION['password'];
@@ -12,11 +13,6 @@ $row = mysql_fetch_assoc($result);
 $access = $row['UserStatus'];
 
 
-$sql = "SELECT * FROM wednesday";
-$myData = mysql_query($sql) or die(mysql_error());
-//$rows = mysql_fetch_assoc($sql); 
-
-
 if($count != 1){
     header("Location: ../login.php");
     
@@ -27,6 +23,7 @@ if($access != 3){
     
 }
 
+$id = mysqli_real_escape_string($con, $_POST['product_id']);
 $product_id = mysqli_real_escape_string($con, $_POST['product_id']);
 $product_name = ucfirst(mysqli_real_escape_string($con, $_POST['product_name']));
 $description = ucfirst(mysqli_real_escape_string($con, $_POST['description']));
@@ -101,20 +98,16 @@ else if($img_url =='Image Thumbnail URL' || $img_url =='img/items/'){
 	header("location:../admin.php");
 }
 
-else {
 
-$sql="UPDATE wednesday
-	  SET UserEmail='$email' , UserPassword='$password' , UserFirstName='$first_name' , UserLastName='$last_name' , UserCity='$city' , UserState='$state' , UserZip='$zip' , UserPhone='$phone' , UserAddress='$address1' , UserAddress2='$address3'
-	  WHERE productID='$productID'";
+$sql="UPDATE wednesday 
+	SET productID='$product_id' , productName='$product_name' , description='$description' , gender='$gender' , category='$category' , SKU='$sku' , stock='$stock' , cost='$cost' , price='$price' , productThumb='$img_thumb' , productImage='$img_url' , weight='$weight'
+	  WHERE productID='$id'";
+
+if (mysqli_query($con, $sql)) {
+    header("location:../admin.php");
+} else {
+    echo "Error updating record: " . mysqli_error($con);
 }
 
-if (!mysqli_query($con,$sql)) {
-  die('Error: ' . mysqli_error($con));
-}
-
-else{
-	header("Location: ../admin.php")
-}
-
-exit();
+mysqli_close($con);
 ?>

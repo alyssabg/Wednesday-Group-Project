@@ -204,7 +204,7 @@ if($access != 3){
 			<div class="col-md-12">
 				<div class="panel panel-success">
 					<div class="panel-heading">
-						<h3 class="panel-title">Add Product</h3>
+						<h3 class="panel-title">Update Product</h3>
 						<div class="pull-right">
 							<!--<span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
 								<i class="glyphicon glyphicon-filter"></i>
