@@ -8,7 +8,15 @@ $query = "SELECT * FROM users WHERE UserEmail='$email' and UserPassword='$passwo
 
 $result = mysql_query($query) or die(mysql_error());
 $count = mysql_num_rows($result);
-$row = mysql_fetch_assoc($result); 
+$row = mysql_fetch_assoc($result);
+$usr = $row['UserID'];
+
+$query2 = "SELECT * FROM orders WHERE UserID='$usr'";
+
+$result2 = mysql_query($query2) or die(mysql_error());
+$count2 = mysql_num_rows($result2);
+//$rows = mysql_fetch_assoc($result2);
+
 
 if($count != 1){
     header("Location: login.php");
@@ -130,9 +138,70 @@ if($count != 1){
                 <div id="recent" class="tab-pane fade in active">
                     <section class="container" style="margin-bottom: 13%;">
                          <div class="container-page">                
-                            <div class="col-md-6">
-                                <h3 class="dark-grey"><span class="wed_color">Recent Orders</span></h3>
-                                <p> You have no recent orders to display </p>
+                            <div class="col-lg-12">
+                                <?php 
+                                if($count2 != 1){
+                                    echo "<h3 class='dark-grey'><span class='wed_color'>Recent Orders</span></h3>";
+                                    echo "<p> You have no recent orders. </p>";
+                                }
+                                else {
+                                    echo "
+
+                               <div class='row'>
+            
+                                <div class='col-lg-12' style='padding-top: 50px'>
+                                    <div class='panel panel-success'>
+                                        <div class='panel-heading'>
+                                            <h3 class='panel-title'>Recent Orders</h3>
+                                            <div class='pull-right'>
+                                                
+                                            </div>
+                                        </div> 
+                                        <div class='table-responsive col-lg-12' style='width: 100%;'>
+                                            <table class='table table-hover' id='task-table'>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Order Number</th>
+                                                        <th>Product Ordered</th>
+                                                        <th>Quantity</th>
+                                                        <th>Price</th>
+                                                        <th>First Name</th>
+                                                        <th>Last Name</th>
+                                                        <th>Shipping Address Line 1</th>
+                                                        <th>Shipping Address Line 2</th>
+                                                        <th>City</th>
+                                                        <th>State</th>
+                                                        <th>Zip</th>
+                                                        <th>Country</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                    ";
+                                    while($rows = mysql_fetch_assoc($result2)){
+                                        echo "<tr>";
+                                        echo "<td>" . $rows['orderNumber'] . "</td>";
+                                        echo "<td>" . $rows['productID'] . "</td>";
+                                        echo "<td>" . $rows['quantity'] . "</td>";
+                                        echo "<td>" . $rows['price'] . "</td>";
+                                        echo "<td>" . $rows['UserFirstNameShip'] . "</td>";
+                                        echo "<td>" . $rows['UserLastNameShip'] . "</td>";
+                                        echo "<td>" . $rows['UserAddressShip'] . "</td>";
+                                        echo "<td>" . $rows['UserAddress2Ship'] . "</td>";
+                                        echo "<td>" . $rows['UserCityShip'] . "</td>";
+                                        echo "<td>" . $rows['UserStateShip'] . "</td>";
+                                        echo "<td>" . $rows['UserZipShip'] . "</td>";
+                                        echo "<td>" . $rows['UserCountryShip'] . "</td>";
+                                        echo "</tr>";
+                                    }
+                                    echo "</tbody>
+                                            </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>";
+                                }
+                                ?>
+                                
                                 <!-- start php
                                     query SELECT * FROM Orders WHERE UserID=$UserID;
 
