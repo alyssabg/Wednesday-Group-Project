@@ -3,6 +3,7 @@ session_start();
 require('../includes/con_wed.php');
 $email = $_SESSION['email'];
 $password = $_SESSION['password'];
+$id = $_GET['id'];
 
 $query = "SELECT * FROM users WHERE UserEmail='$email' and UserPassword='$password'";
 
@@ -13,9 +14,10 @@ $access = $row['UserStatus'];
 
 
 $sql = "SELECT * FROM wednesday WHERE productID = '$id'";
-$myData = mysql_query($sql) or die(mysql_error());
-$rows = mysql_fetch_assoc($sql); 
 
+$results = mysql_query($sql) or die(mysql_error());
+$counts = mysql_num_rows($results);
+$rows = mysql_fetch_assoc($results);
 
 if($count != 1){
     header("Location: login.php");
@@ -27,7 +29,6 @@ if($access != 3){
     
 }
 
-$id = $_GET['id'];
 ?>
 
 <!doctype html>
@@ -221,61 +222,66 @@ $id = $_GET['id'];
 
                                 <div class="form-group col-md-4">
                                     <label>Product ID</label>
-                                    <input name='product_id' type="tel" class="form-control" onFocus="if(this.value == 'Product ID') this.value = ''" onBlur="if(this.value == '') this.value = 'Product ID'" value="<?php echo $rows['productID'];?>" required="required">
+                                    <input name='product_id' type="tel" class="form-control" onFocus="if(this.value == '<?php echo $rows['productID'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $rows['productID'];?>'" value="<?php echo $rows['productID'];?>" required="required">
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label>Product Name</label>
-                                    <input name='product_name' type="text" class="form-control" onFocus="if(this.value == 'Product Name') this.value = ''" onBlur="if(this.value == '') this.value = 'Product Name'" value="Product Name" required="required">
+                                    <input name='product_name' type="text" class="form-control" onFocus="if(this.value == '<?php echo $rows['productName'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $rows['productName'];?>'" value="<?php echo $rows['productName'];?>" required="required">
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label>Description</label>
-                                    <input name='description' type="text" class="form-control" onFocus="if(this.value == 'Description') this.value = ''" onBlur="if(this.value == '') this.value = 'Description'" value="Description" required="required">
+                                    <input name='description' type="text" class="form-control" onFocus="if(this.value == '<?php echo $rows['description'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $rows['description'];?>'" value="<?php echo $rows['description'];?>" required="required">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label>Gender</label>
+                                    <input name='description' type="text" class="form-control" onFocus="if(this.value == '<?php echo $rows['gender'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $rows['gender'];?>'" value="<?php echo $rows['gender'];?>" required="required">
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label>Category</label>
-                                    <input name='category' type="text" class="form-control" onFocus="if(this.value == 'Category') this.value = ''" onBlur="if(this.value == '') this.value = 'Category'" value="Category" required="required">
+                                    <input name='category' type="text" class="form-control" onFocus="if(this.value == '<?php echo $rows['category'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $rows['category'];?>'" value="<?php echo $rows['category'];?>" required="required">
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label>SKU</label>
-                                    <input name='stock' type="tel" class="form-control" onFocus="if(this.value == 'SKU') this.value = ''" onBlur="if(this.value == '') this.value = 'SKU'" value="SKU" required="required">
+                                    <input name='stock' type="tel" class="form-control" onFocus="if(this.value == '<?php echo $rows['SKU'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $rows['SKU'];?>'" value="<?php echo $rows['SKU'];?>" required="required">
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label>Stock</label>
-                                    <input name='sku' type="tel" class="form-control" onFocus="if(this.value == 'Stock') this.value = ''" onBlur="if(this.value == '') this.value = 'Stock'" value="Stock" required="required">
+                                    <input name='sku' type="tel" class="form-control" onFocus="if(this.value == '<?php echo $rows['stock'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $rows['stock'];?>'" value="<?php echo $rows['stock'];?>" required="required">
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label>Cost</label>
-                                    <input name='cost' type="tel" class="form-control" onFocus="if(this.value == 'Cost') this.value = ''" onBlur="if(this.value == '') this.value = 'Cost'" value="Cost" required="required">
+                                    <input name='cost' type="tel" class="form-control" onFocus="if(this.value == '<?php echo $rows['cost'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $rows['cost'];?>'" value="<?php echo $rows['cost'];?>" required="required">
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label>Price</label>
-                                    <input name='price' type="tel" class="form-control" onFocus="if(this.value == 'Price') this.value = ''" onBlur="if(this.value == '') this.value = 'Price'" value="Price" required="required">
+                                    <input name='price' type="tel" class="form-control" onFocus="if(this.value == '<?php echo $rows['price'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $rows['price'];?>'" value="<?php echo $rows['price'];?>" required="required">
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label>Product Weight</label>
-                                    <input name='weight' type="tel" class="form-control" onFocus="if(this.value == 'Product Weight') this.value = ''" onBlur="if(this.value == '') this.value = 'Product Weight'" value="Product Weight" required="required">
+                                    <input name='weight' type="tel" class="form-control" onFocus="if(this.value == '<?php echo $rows['weight'];?>') this.value = ''" onBlur="if(this.value == '') this.value = '<?php echo $rows['weight'];?>'" value="<?php echo $rows['weight'];?>" required="required">
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label>Image Thumbnail</label>
-                                    <input name='img_thumb' type="text" class="form-control" onFocus="if(this.value == 'Image Thumbnail URL') this.value = 'img/items/thumbs/'" onBlur="if(this.value == 'img/items/thumbs/') this.value = 'Image Thumbnail URL'" value="Image Thumbnail URL" required="required">
+                                    <input name='img_thumb' type="text" class="form-control" onFocus="if(this.value == '<?php echo $rows['productThumb'];?>') this.value = 'img/items/thumbs/'" onBlur="if(this.value == 'img/items/thumbs/') this.value = '<?php echo $rows['productThumb'];?>'" value="<?php echo $rows['productThumb'];?>" required="required">
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label>Image URL</label>
-                                    <input name='img_url' type="text" class="form-control" onFocus="if(this.value == 'Image URL') this.value = 'img/items/'" onBlur="if(this.value == 'img/items/') this.value = 'Image URL'" value="Image URL" required="required">
+                                    <input name='img_url' type="text" class="form-control" onFocus="if(this.value == '<?php echo $rows['productImage'];?>') this.value = 'img/items/'" onBlur="if(this.value == 'img/items/') this.value = '<?php echo $rows['productImage'];?>'" value="<?php echo $rows['productImage'];?>" required="required">
                                 </div>
 
                                 <div class="col-md-12 pull-right" style="padding-bottom: 10px;">
-                                    <input type="submit" style="background-color: #d824c9" value="Add Product" class="btn btn-primary pull-right" id="submit"/>
+                                    <input type="submit" style="background-color: #d824c9" value="Update Product" class="btn btn-primary pull-right" id="submit"/>
                                 </div>
 
                                 <br />
