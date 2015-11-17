@@ -1,4 +1,5 @@
 <?php
+
 $con = mysql_connect("sulley.cah.ucf.edu","ka578143","DancinG#93");
 if (!$con) {
 	die("Can not Connect: " . mysql_error());
@@ -191,164 +192,101 @@ switch($_GET["action"]) {
 	?>
 
                 <div class="well">
+                    <?php
 
-                    <div class="text-right">
-                        <button type="button" onclick="showReview()" class="btn btn-success pull-right">
-                            Leave a Review<span class="glyphicon glyphicon-chevron-down"></span>
-                        </button>
-                        <br>
-                    </div>
+                        // Error reporting:
+                        error_reporting(E_ALL^E_NOTICE);
 
-                        <div class="container" id="review" style="visibility:hidden;">
-                            <?php
-                                // define variables and set to empty values
-                                $firstName = $lastName = $review = "";
+                        include "connect.php";
+                        include "comment.class.php";
 
-                                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                                   $firstName = test_input($_POST["firstName"]);
-                                   $lastName = test_input($_POST["lastName"]);
-                                   $review = test_input($_POST["review"]);
-                                }
 
-                                function test_input($data) {
-                                   $data = trim($data);
-                                   $data = stripslashes($data);
-                                   $data = htmlspecialchars($data);
-                                   return $data;
-                                }
-                                $t=time();
-                            ?>
-   
-                            <div class="row">
-                                <div class="col-md-12 col-md-8">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title">
-                                                Why are you so obsessed with me?
-                                            </h3>
-                                        </div>
-                                       
-                                        <div class="panel-body1">
-                                        
-                                            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
-                                        
-                                            <div class="row">
-                                                <div class="col-xs-6 col-md-6 pull-right">
-                                                    <div class="form-group">
-                                                        <label for="firstName">
-                                                            First Name</label>
-                                                        <input type="text" class="form-control" name="firstName" id="firstName"  required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-6 col-md-6 pull-left">
-                                                    <div class="form-group">
-                                                        <label for="lastName">
-                                                            Last Name</label>
-                                                        <input type="text" class="form-control" name="lastName" id="lastName" required />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
+                        /*
+                        /   Select all the comments and populate the $comments array with objects
+                        */
 
-                                          
-                                             <div class="row">
-                                                <div class="col-xs-4 col-md-4 pull-left">
-                                                    <div class="form-group">
-                                                        <label for="review">
-                                                            Review</label>
-                                                        <textarea type="text" class="form-control"  name="review" id="review" required></textarea>
-                                                    </div>
-                                                </div>
+                        $comments = array();
+                        $result = mysql_query("SELECT * FROM comments ORDER BY id DESC");
 
-                                                <div class="col-xs-4 col-md-4 ">
-                                                    <div class="form-group">
-                                                        <input type="submit" onclick="showReview()" class="btn btn-success pull-right" name="submit" value="Submit">
-                                                    </span>
-                                                </input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            </form>
-                                        </div>
-                                    </div>
-                                   
-                                </div>
-                            </div>
-                        </div>
+                        while($row = mysql_fetch_assoc($result))
+                        {
+                            $comments[] = new Comment($row);
+                        }
 
-                    <hr>
+                    ?>
+                    <div id="addCommentContainer">
+    <p style="color: #d824c9; font-size:30px; text-align:center; font-family: 'Montserrat', sans-serif;" >Why Are You So Obsessed With Me?</p>
+    <form id="addCommentForm" method="post" action="">
+        
+        <div>
+            <div class="col-xs-6 col-md-6 " >
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" class="form-control" name="name" id="name" />
+                </div>
+            </div>
+                <div class="col-xs-6 col-md-6">
+                   <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="text" class="form-control"  name="email" id="email" />
+                </div>
+            </div>
+       
+            
+           <!-- <div style="text-align:center;">
+                <div class="col-xs-6 col-md-6 pull-right" style="margin-right:165px;">
+                    <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="text" class="form-control"  name="email" id="email" />
+                </div>
+            </div>
+        </div>-->
+            
+            <div style="display: none;">
+                <label for="url">Website (not required)</label>
+                <input type="text" name="url" id="url" />
+            </div>
+            
+            <label for="body">Comment Body</label>
+            <textarea name="body" class="form-control" id="body" cols="20" rows="5"></textarea>
+            <br>
+            
+            <input type="submit" style="background-color: #d824c9" value="Submit" class="btn btn-primary" id="submit"/>
+        </div>
+    </form>
+</div>
+                    
+                    <div id="main">
 
-                    <div class="row">
-                        <div class="col-md-12">
+                    <?php
 
-                        <?php
-                        while ($row = mysql_fetch_array($myRev))  
-                        echo'
-                            <div class="row">
-                            <div class="col-md-12">
-                                <div class="caption-full">  
-                                    <h4>'.$row['UserFirstName'].'</h4>
-                                    <p>'.$row['review'].'</p>
-                                    <hr>
-                                </div>
-                            </div>
-                            </div>
-                        
-                        '?>
+/*
+/   Output the comments one by one:
+*/
 
-                        </div>
-                    </div>
+foreach($comments as $c){
+    echo $c->markup();
+}
+
+?>
+
+
+
+</div>
+</div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="script.js"></script>
+
+</div>
+
+                   
+
+
 
                 
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <?php
-                        function saveComment($contentID){
-                            $insert = array();
-                            $insert['content'] = $contentID;
-                            $insert['FirstName'] = strip_tags($this->registry->getObject('db')->sanitizeData($_POST['firstName']));
-                            $insert['LastName'] = $this->registry->getObject('db')->sanitizeData($_POST['lastName']);
-                            $insert['ReviewComment'] = strip_tags($this->registry->getObject('db')->sanitizeData($_POST['review']));
-                            $insert['IPAddress'] = $_SERVER['REMOTE_ADDR'];
-                            $valid = true;
-                            if( $_POST['firstName'] == '' ||
-                                $_POST['lastName'] == '' ||
-                                $_POST['review'] == ''){
-                                    $valid = false;
-                                }
-                        
 
-                        if($valid == true){
-                            $this->registry->getObject('db')->insertRecords('firstName',$insert);
-                            $this->registry->getObject('template')->getPage()->addTag('message_heading', 'Review added');
-                            $this->registry->getObject('template')->getPage()->addTag('message_heading', 'Your review has been added');
-                            $this->registry->getObject('template')->buildFromTemplates('header.tpl.php', 'message.tpl.php', 'footer.tpl.php');
-                        }
-                        else{
-                            $this->registry->getObject('template')->getPage()->addTag('message_heading', 'Error');
-                            $this->registry->getObject('template')->getPage()->addTag('message_heading', 'Either your name or review was empty, please try again');
-                            $this->registry->getObject('template')->buildFromTemplates('header.tpl.php', 'message.tpl.php', 'footer.tpl.php');
-                        }
-                    }
-        
-                    ?>
-                            <?php
-                                echo $firstName;
-                                echo "&nbsp;";
-                                echo $lastName;
-                            ?>
-
-                            <?php
-                                echo "<br>";
-                                echo $review;
-                                echo "<br>";
-                            ?>
-
-
-                        </div>
-                    </div>
 
                 </div>
 
@@ -359,7 +297,9 @@ switch($_GET["action"]) {
 
                 <div class="row">
                         <div class="col-md-12">
+                            <h1 style="text-align:center;">That's so fetch</h1>
                     <?php
+                    error_reporting(0);
                 $con = mysql_connect("sulley.cah.ucf.edu","ka578143","DancinG#93");
                 if (!$con) {
                     die("Can not Connect: " . mysql_error());
@@ -373,6 +313,7 @@ switch($_GET["action"]) {
                 <?php
                     while ($row = mysql_fetch_array($myData))  
                     echo'
+                    <div class="con">
                     <div class="col-md-4">
                         <div class="thumbnail">
                             <a href="product_details.php?id='.$row['productID'].'"><img src="'.$row['productThumb'].'" alt="'.$row['productThumb'].'"></a>
@@ -384,6 +325,7 @@ switch($_GET["action"]) {
                             </div>
                            
                         </div>
+                    </div>
                     </div>
                     '
                     ?>
