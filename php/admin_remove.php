@@ -1,10 +1,8 @@
 <?php
 session_start();
-require('includes/con_wed.php');
-require('../includes/con_wed2.php');
+require('../includes/con_wed.php');
 $email = $_SESSION['email'];
 $password = $_SESSION['password'];
-$prodID = mysql_real_escape_string($_POST['prodID']);
 
 $query = "SELECT * FROM users WHERE UserEmail='$email' and UserPassword='$password'";
 
@@ -13,22 +11,27 @@ $count = mysql_num_rows($result);
 $row = mysql_fetch_assoc($result);
 $access = $row['UserStatus'];
 
+
 if($count != 1){
-    header("Location: login.php");
+    header("Location: ../login.php");
     
 }
 
 if($access != 3){
-    header("Location: client.php");
+    header("Location: ../client.php");
     
 }
 
+$id = $_GET['id'];
 
-$sql = "SELECT * FROM wednesday";
-$myData = mysql_query($sql) or die(mysql_error());
-$rows = mysql_fetch_assoc($sql); 
+$sql = "DELETE FROM wednesday WHERE productID = '$id'";
 
+$result = mysql_query($sql) or die("error");
 
-echo $prodID;
-
+if($result){
+	header("Location: ../admin.php");
+}
+else{ 
+	header("Location: ../admin.php");
+}
 ?>

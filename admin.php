@@ -330,7 +330,8 @@ if($access != 3){
 						<tbody>
                         <?php
 							while($rows = mysql_fetch_array($myData)){
-														echo "<tr>";
+								$id = $rows['productID'];
+                                                        echo "<tr>";
 							echo "<td>" . $rows['productID'] . "</td>";
 							echo "<td>" . $rows['productName'] . "</td>";
 							echo "<td>" . $rows['description'] . "</td>";
@@ -343,19 +344,20 @@ if($access != 3){
 							echo "<td>" . $rows['productImage'] . "</td>";
                             echo "<td>" . $rows['productThumb'] . "</td>";
                             echo "<td>
-                                    <form method='post' action='php/admin_update.php'>
-                                    <button type='submit' class='btn btn-success' name='prodUpdate' value='" . $rows['productID'] . "'>
+                                    <a href='php/admin_update.php?id=$id'>
+                                    <button type='submit' class='btn btn-success' id= '$id' name='". $rows['productName'] ."' value='" . $rows['productID'] . "'>
                                         <i class='fa fa-pencil-square-o'></i>
                                     </button>
-                                    </form>
+                                    </a>
                                   </td>";
                             echo "<td>
-                                    <form method='post' action='php/admin_remove.php'>
-                                    <button type='submit' class='btn btn-success' name='prodID' value='" . $rows['productID'] . "'>
+                                    <a href='php/admin_remove.php?id=$id'>
+                                    <button type='submit' class='btn btn-success' id= '$id' name='". $rows['productName'] ."' value='" . $rows['productID'] . "'>
                                         <i class='fa fa-trash-o'></i>
                                     </button>
-                                    </form>
+                                    </a>
                                    </td>";
+                            
 							echo "</tr>";
 														}
 							?>
