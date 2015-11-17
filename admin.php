@@ -27,6 +27,22 @@ if($access != 3){
     
 }
 
+$sales = "SELECT MAX(orderNumber) FROM orders";
+$reviews = "SELECT MAX(reviewID) FROM reviews";
+$orders = "SELECT SUM(quantity) AS TotalItemsOrdered FROM orders";
+$revenue = "SELECT SUM(price) AS TotalRevenue FROM orders";
+
+$salesResult = mysql_query($sales) or die(mysql_error());
+$reviewResult = mysql_query($reviews) or die(mysql_error());
+$ordersResult = mysql_query($orders) or die(mysql_error());
+$revenueResult = mysql_query($revenue) or die(mysql_error());
+
+/*
+$ttlSales = mysql_num_rows($result);
+$ttlReviews = 
+$ttlOrders = 
+$ttlRevenue = 
+*/
 ?>
 
 <!doctype html>
@@ -141,31 +157,31 @@ if($access != 3){
                         	<h4><strong>Total Sales:</strong></h4>
                         </div>
                         <div class="col-md-2">
-                        	<h4>32</h4>
+                        	<h4><?php echo $salesResult;?></h4>
                         </div>
                       </div>
 					  <div class="row">
                       	<div class="col-md-10">
-                        	<h4><strong>New Orders Placed:</strong></h4>
+                        	<h4><strong>Total Orders Placed:</strong></h4>
                         </div>
                         <div class="col-md-2">
-                        	<h4>5</h4>
+                        	<h4><?php echo $ordersResult;?></h4>
                         </div>
                       </div>
                         <div class="row">
                       	<div class="col-md-10">
-                        	<h4><strong>New Payment Recieved:</strong></h4>
+                        	<h4><strong>Total Revenue:</strong></h4>
                         </div>
                         <div class="col-md-2">
-                        	<h4>5</h4>
+                        	<h4><?php echo $revenueResult;?></h4>
                         </div>
                       </div>
                         <div class="row">
                       	<div class="col-md-10">
-                        	<h4><strong>New Reviews/Comments:</strong></h4>
+                        	<h4><strong>Total Reviews/Comments:</strong></h4>
                         </div>
                         <div class="col-md-2">
-                        	<h4>2</h4>
+                        	<h4><?php echo $reviewResult;?></h4>
                         </div>
                       </div>
                       <br>
