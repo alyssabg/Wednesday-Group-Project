@@ -234,6 +234,11 @@ if($access != 3){
                                 </div>
 
                                 <div class="form-group col-md-4">
+                                    <label>Gender</label>
+                                    <input name='gender' type="text" class="form-control" onFocus="if(this.value == 'Gender') this.value = ''" onBlur="if(this.value == '') this.value = 'Gender'" value="Gender" required="required">
+                                </div>
+
+                                <div class="form-group col-md-4">
                                     <label>Category</label>
                                     <input name='category' type="text" class="form-control" onFocus="if(this.value == 'Category') this.value = ''" onBlur="if(this.value == '') this.value = 'Category'" value="Category" required="required">
                                 </div>
@@ -315,6 +320,7 @@ if($access != 3){
 								<th>Product Id</th>
                                 <th>Product Name</th>
                                 <th>Description</th>
+                                <th>Gender</th>
                                 <th>Category</th>
                                 <th>SKU</th>
                                 <th>Stock</th>
@@ -335,6 +341,7 @@ if($access != 3){
 							echo "<td>" . $rows['productID'] . "</td>";
 							echo "<td>" . $rows['productName'] . "</td>";
 							echo "<td>" . $rows['description'] . "</td>";
+                            echo "<td>" . $rows['gender'] . "</td>";
 							echo "<td>" . $rows['category'] . "</td>";
 							echo "<td>" . $rows['SKU'] . "</td>";
 							echo "<td>" . $rows['stock'] . "</td>";

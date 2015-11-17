@@ -6,6 +6,7 @@ require('../includes/con_wed2.php');
 $product_id = mysqli_real_escape_string($con, $_POST['product_id']);
 $product_name = ucfirst(mysqli_real_escape_string($con, $_POST['product_name']));
 $description = ucfirst(mysqli_real_escape_string($con, $_POST['description']));
+$gender = ucfirst(mysqli_real_escape_string($con, $_POST['gender']));
 $category = ucfirst(mysqli_real_escape_string($con, $_POST['category']));
 $sku = mysqli_real_escape_string($con, $_POST['sku']);
 $stock = mysqli_real_escape_string($con, $_POST['stock']);
@@ -26,6 +27,11 @@ else if($product_name =='Product Name'){
 }
 
 else if($description =='Description'){
+	 //redirect if failed
+    header("location:../admin.php");
+}
+
+else if($gender =='Gender'){
 	 //redirect if failed
     header("location:../admin.php");
 }
@@ -72,8 +78,8 @@ else if($img_url =='Image Thumbnail URL' || $img_url =='img/items/'){
 
 else {
 
-$sql="INSERT INTO wednesday (productID, productName, description, category, SKU, stock, cost, price, productImage, productThumb)
-VALUES ('$product_id', '$product_name', '$description', '$category', '$sku', '$stock', '$cost' , '$price' , '$img_url' , '$img_thumb' )";
+$sql="INSERT INTO wednesday (productID, productName, description, gender, category, SKU, stock, cost, price, productImage, productThumb)
+VALUES ('$product_id', '$product_name', '$description', '$gender' , '$category', '$sku', '$stock', '$cost' , '$price' , '$img_url' , '$img_thumb' )";
 
 if (!mysqli_query($con,$sql)) {
   die('Error: ' . mysqli_error($con));
